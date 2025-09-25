@@ -8,6 +8,7 @@
 \usepackage{geometry}         % 페이지 여백 설정
 \usepackage{hyperref}         % 하이퍼링크
 \usepackage{color}            % 색상 지원
+\usepackage{indentfirst}
 
 % 페이지 여백 설정
 \geometry{margin=2.5cm}
@@ -33,20 +34,27 @@
 
 % =====================================
 
-\section{KMO 초급 대수 267번 문항}
+\section{KMO 초급 대수}
 
 \subsection{267번}
-자연수 $n$에 대하여 모든 항이 양수인 수열 ${a_n}$이 $
+\setlength{\parindent}{20pt}
+자연수 $n$에 대하여 모든 항이 양수인 수열 ${a_n}$이 
+$\sum_{k=1}^n {a_n} = \frac{1}{2} \left( {a_n} + \frac{2}{a_n} \right) $
+일때, 
 
-\[
-    \int_0^1 x^2 dx
-\]
+$\sum _ {k=1} ^{128} a_k$의 값을 구하여라
+
 
 \subsection{풀이}
 \begin{align}
+	S_{n-1} &= S_{n} - a_n \\
+	&= \frac{1}{2} \left( a_n + \frac{2}{a_n} \right) - a_n 
+	\\
     \int_0^1 x^2 dx &= \left[ \frac{x^3}{3} \right]_0^1 \\
                      &= \frac{1}{3} - 0 \\
                      &= \frac{1}{3}
+\end{align}
+
 \end{align}
 
 
