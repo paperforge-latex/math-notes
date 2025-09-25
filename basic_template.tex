@@ -126,11 +126,77 @@
 % =====================================
 \section{유용한 팁}
 
+\subsection{수식 작성 팁}
 \begin{itemize}
     \item 여러 줄 수식은 \texttt{align} 환경 사용
     \item 수식 번호 제거는 \texttt{*} 추가 (예: \texttt{align*})
+    \item 특정 줄만 번호 제거: \texttt{\textbackslash nonumber}
+    \item 수동 번호 지정: \texttt{\textbackslash tag\{번호\}}
     \item 괄호 크기 자동 조절: \texttt{\textbackslash left(}, \texttt{\textbackslash right)}
     \item 수식 내 텍스트: \texttt{\textbackslash text\{...\}}
+    \item 수식 참조: \texttt{\textbackslash label\{eq:name\}}, \texttt{\textbackslash eqref\{eq:name\}}
+    \item 긴 분수: \texttt{\textbackslash dfrac} 대신 \texttt{\textbackslash frac} 사용
+    \item 행렬 간격 조정: \texttt{\textbackslash arraystretch\{1.5\}}
+\end{itemize}
+
+\subsection{문서 구조 팁}
+\begin{itemize}
+    \item 섹션 자동 번호: \texttt{\textbackslash section}, \texttt{\textbackslash subsection}
+    \item 번호 없는 섹션: \texttt{\textbackslash section*}
+    \item 목차에만 추가: \texttt{\textbackslash addcontentsline\{toc\}\{section\}\{제목\}}
+    \item 페이지 나누기: \texttt{\textbackslash newpage}, \texttt{\textbackslash pagebreak}
+    \item 줄 간격 조정: \texttt{\textbackslash linespread\{1.5\}}
+    \item 들여쓰기 설정: \texttt{\textbackslash setlength\{\textbackslash parindent\}\{20pt\}}
+\end{itemize}
+
+\subsection{한글 작성 팁}
+\begin{itemize}
+    \item 한글 폰트: \texttt{kotex} 패키지 사용
+    \item 컴파일러: \texttt{xelatex} 또는 \texttt{lualatex} 사용
+    \item 한글 문단 첫 줄 들여쓰기: \texttt{indentfirst} 패키지
+    \item 한글 정리/정의 환경: \texttt{\textbackslash newtheorem\{theorem\}\{정리\}}
+    \item 증명 환경 한글화: \texttt{\textbackslash renewcommand\{\textbackslash proofname\}\{증명\}}
+\end{itemize}
+
+\subsection{표와 그림 팁}
+\begin{itemize}
+    \item 표 생성: \texttt{tabular} 환경 사용
+    \item 표 캡션: \texttt{\textbackslash caption} 명령어
+    \item 표 위치 고정: \texttt{[H]} 옵션 (float 패키지 필요)
+    \item 그림 삽입: \texttt{\textbackslash includegraphics[width=0.5\textbackslash textwidth]}
+    \item 그림 나란히: \texttt{subfigure} 또는 \texttt{subcaption} 패키지
+    \item 표/그림 참조: \texttt{\textbackslash ref\{fig:name\}}, \texttt{\textbackslash ref\{tab:name\}}
+\end{itemize}
+
+\subsection{참조와 링크 팁}
+\begin{itemize}
+    \item 스마트 참조: \texttt{\textbackslash usepackage\{cleveref\}}, \texttt{\textbackslash cref\{eq:name\}}
+    \item 여러 참조: \texttt{\textbackslash cref\{eq:1,eq:2,eq:3\}}
+    \item 페이지 참조: \texttt{\textbackslash pageref\{label\}}
+    \item 외부 링크: \texttt{\textbackslash href\{URL\}\{텍스트\}}
+    \item 이메일 링크: \texttt{\textbackslash mailto\{email@example.com\}}
+    \item PDF 북마크: \texttt{hyperref} 패키지의 \texttt{bookmarks} 옵션
+\end{itemize}
+
+\subsection{컴파일 및 오류 해결 팁}
+\begin{itemize}
+    \item 컴파일 순서: LaTeX → BibTeX → LaTeX → LaTeX (참조 있을 때)
+    \item 임시 파일 정리: \texttt{*.aux}, \texttt{*.log}, \texttt{*.toc} 삭제
+    \item 오류 위치 찾기: 로그 파일에서 \texttt{!} 표시 확인
+    \item 패키지 충돌: 패키지 로드 순서 변경 시도
+    \item 인코딩 문제: UTF-8 인코딩으로 저장
+    \item 긴 컴파일: \texttt{draft} 옵션으로 빠른 미리보기
+\end{itemize}
+
+\subsection{고급 기능 팁}
+\begin{itemize}
+    \item 매크로 정의: \texttt{\textbackslash newcommand\{\textbackslash mycmd\}[인수개수]\{정의\}}
+    \item 조건부 컴파일: \texttt{ifthen} 패키지
+    \item 외부 파일 포함: \texttt{\textbackslash input\{파일명\}}
+    \item 하위 문서: \texttt{\textbackslash include\{파일명\}}
+    \item 색상 사용: \texttt{\textbackslash textcolor\{색상\}\{텍스트\}}
+    \item 박스 만들기: \texttt{\textbackslash fbox}, \texttt{\textbackslash colorbox}
+    \item TikZ 그림: 복잡한 도형과 그래프 그리기
 \end{itemize}
 
 % =====================================

@@ -3,12 +3,17 @@
 ## 📚 기본 사용법
 
 ### 1. 문서 컴파일
+한글이 포함된 경우 (권장):
 ```bash
-pdflatex math_notes.tex
+xelatex filename.tex
 ```
-또는 한글이 포함된 경우:
+또는 latexmk 사용:
 ```bash
-xelatex math_notes.tex
+latexmk -xelatex filename.tex
+```
+영어만 있는 경우:
+```bash
+pdflatex filename.tex
 ```
 
 ### 2. 문서 구조
@@ -102,34 +107,81 @@ f(x) = \begin{cases}
 
 ## 💡 유용한 팁
 
-1. **괄호 크기 자동 조절**
+### 수식 번호 제어
+1. **전체 번호 제거**
    ```latex
-   \left( \frac{a}{b} \right)  % 분수에 맞춰 괄호 크기 조절
-   ```
-
-2. **수식 내 텍스트**
-   ```latex
-   x > 0 \text{ 일 때}  % 수식 안에 한글/영어 텍스트
-   ```
-
-3. **수식 번호 제거**
-   ```latex
-   \begin{align*}  % * 추가하면 번호 없음
+   \begin{align*}  % * 추가하면 전체 번호 없음
    ...
    \end{align*}
    ```
 
-4. **벡터 표현**
+2. **특정 줄만 번호 제거**
+   ```latex
+   \begin{align}
+   x &= a + b \\
+   y &= c + d \nonumber  % 이 줄만 번호 없음
+   \end{align}
+   ```
+
+3. **수동 번호 지정**
+   ```latex
+   \begin{align*}
+   E &= mc^2 \tag{아인슈타인} \\
+   F &= ma \tag{1}  % 괄호 자동 추가
+   P &= \frac{F}{A} \tag*{중요}  % 괄호 없음
+   \end{align*}
+   ```
+
+### 수식 참조
+4. **라벨과 참조**
+   ```latex
+   \begin{equation}
+   E = mc^2 \label{eq:einstein}
+   \end{equation}
+
+   식 \eqref{eq:einstein}에서...  % (1) 형태로 참조
+   \cref{eq:einstein}에서...     % "식 (1)"로 스마트 참조
+   ```
+
+5. **여러 참조**
+   ```latex
+   \cref{eq:1,eq:2,eq:3}         % "식 (1), (2)과 (3)"
+   \cref{eq:1,eq:2,eq:3,eq:4}    % "식 (1)에서 (4)"
+   ```
+
+### 템플릿 활용
+6. **templates.tex 사용**
+   ```latex
+   \documentclass{article}
+   \input{templates.tex}  % 한글 설정 + cleveref 한국어화
+
+   \begin{document}
+   \Cref{eq:main}에서...  % "식 (1.1)"로 자동 한국어 출력
+   \end{document}
+   ```
+
+### 기타 팁
+7. **괄호 크기 자동 조절**
+   ```latex
+   \left( \frac{a}{b} \right)  % 분수에 맞춰 괄호 크기 조절
+   ```
+
+8. **수식 내 텍스트**
+   ```latex
+   x > 0 \text{ 일 때}  % 수식 안에 한글/영어 텍스트
+   ```
+
+9. **벡터 표현**
    ```latex
    \vec{v}      % 화살표 벡터
    \mathbf{v}   % 굵은 글씨 벡터
    ```
 
-5. **합과 곱**
-   ```latex
-   \sum_{i=1}^{n} i      % 시그마 합
-   \prod_{i=1}^{n} i     % 파이 곱
-   ```
+10. **합과 곱**
+    ```latex
+    \sum_{i=1}^{n} i      % 시그마 합
+    \prod_{i=1}^{n} i     % 파이 곱
+    ```
 
 ## 🎯 자주 하는 실수
 
@@ -138,30 +190,82 @@ f(x) = \begin{cases}
 3. **띄어쓰기**: LaTeX는 수식 모드에서 띄어쓰기 무시 → `\,` `\;` `\quad` 사용
 4. **특수문자**: `%`, `#`, `&` 등은 `\%`, `\#`, `\&`로 이스케이프
 
-## 📖 문서에 내용 추가하기
+## 📖 문서 작성 워크플로우
 
-1. `math_notes.tex` 파일을 열어서
-2. 원하는 섹션 아래에 내용 추가
-3. 저장 후 컴파일
-
-예시:
-```latex
-\section{새로운 주제}
-여기에 내용 작성...
-
-\subsection{세부 내용}
-수식: $f(x) = x^2$
+### 프로젝트 구조
 ```
+LaTexS/
+├── templates.tex           # 공통 설정 파일
+├── basic_template.tex       # 기본 템플릿
+└── articles/
+    └── 01_partial_sum_recurssion/
+        └── partial_sum.tex  # 개별 문서
+```
+
+### 새 문서 만들기
+1. **템플릿 활용**
+   ```latex
+   \documentclass[a4paper,12pt]{article}
+   \input{../../templates.tex}  % 공통 설정 로드
+
+   \title{문서 제목}
+   \author{작성자}
+   \date{\today}
+
+   \begin{document}
+   \maketitle
+   \tableofcontents
+   \newpage
+
+   \section{새로운 주제}
+   내용 작성...
+   \end{document}
+   ```
+
+### iPad에서 작업하기
+**Textastic + Tex Compiler**
+- Textastic으로 .tex 파일 편집
+- Tex Compiler 앱으로 컴파일하여 PDF 생성
+- 또는 Overleaf 브라우저 사용
 
 ## 🔧 문제 해결
 
-- **한글 깨짐**: `xelatex` 사용 또는 `\usepackage{kotex}` 확인
-- **수식 에러**: 달러 기호 짝이 맞는지 확인
-- **PDF 생성 안됨**: 에러 메시지 확인, 보통 괄호나 환경 닫기 누락
+### 컴파일 에러
+- **한글 깨짐**: `xelatex` 또는 `lualatex` 사용, `\usepackage{kotex}` 확인
+- **수식 에러**: 달러 기호 `$...$` 짝이 맞는지 확인
+- **PDF 생성 안됨**: 에러 메시지 확인, 보통 괄호나 환경(`\begin{...}` `\end{...}`) 닫기 누락
+- **패키지 에러**: `templates.tex` 파일의 패키지 충돌 확인
+
+### 참조 에러
+- **undefined reference**: `\label{}`과 `\ref{}` 이름 일치 확인
+- **cleveref 에러**: `templates.tex` 파일에 한국어 설정이 포함되어 있는지 확인
+- **번호 표시 안됨**: 2번 컴파일 필요 (참조 업데이트)
 
 ## 🚀 시작하기
 
-1. `math_notes.tex` 파일 열기
+### 로컬에서 작업
+1. `.tex` 파일 열기
 2. 내용 수정/추가
-3. 터미널에서 `pdflatex math_notes.tex` 실행
-4. 생성된 `math_notes.pdf` 확인
+3. 터미널에서 `xelatex filename.tex` 실행
+4. 생성된 PDF 확인
+
+### iPad에서 LaTeX 작업
+1. **설치할 앱**
+   - Textastic: 코드 편집기
+   - Tex Compiler: LaTeX 컴파일러
+   - Working Copy: Git 클라이언트 (선택사항)
+
+2. **작업 방법**
+   - 방법 1: Textastic에서 편집 → Tex Compiler로 컴파일
+   - 방법 2: Overleaf 브라우저에서 직접 작업
+   - 방법 3: GitHub에 저장 후 컴퓨터에서 컴파일
+
+## 📱 Anki 카드 만들기 템플릿
+
+오늘 배운 내용을 Anki로 복습하세요:
+
+**질문**: `\tag{}`와 `\nonumber`의 차이점은?
+**답안**: `\tag{}`는 수동 번호 지정, `\nonumber`는 해당 줄 번호만 제거
+
+**질문**: iPad에서 LaTeX 작업하는 최적 조합은?
+**답안**: Textastic (편집) + Tex Compiler (컴파일) 또는 Overleaf (온라인)
