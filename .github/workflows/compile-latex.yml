@@ -31,7 +31,7 @@ jobs:
       uses: xu-cheng/latex-action@v3
       with:
         root_file: ${{ steps.tex-files.outputs.files }}
-        compiler: xelatex
+        compiler: latexmk
         latexmk_use_xelatex: true
         args: -interaction=nonstopmode -file-line-error
 

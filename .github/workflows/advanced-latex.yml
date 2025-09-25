@@ -28,7 +28,7 @@ jobs:
       uses: xu-cheng/latex-action@v2
       with:
         root_file: ${{ steps.tex-files.outputs.files }}
-        compiler: xelatex  # 한글 지원
+        compiler: latexmk
         latexmk_use_xelatex: true
 
     - name: Create timestamp
