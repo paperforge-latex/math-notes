@@ -21,7 +21,7 @@
 % 증명 환경 한글화
 \renewcommand{\proofname}{증명}
 
-\title{부분합을 포함하는 점화식}
+\title{LaTeX 수학 작성 가이드}
 \author{Taeyang Lee}
 \date{\today}
 
@@ -32,59 +32,85 @@
 \newpage
 
 % =====================================
+\section{서론}
+
+이 문서는 LaTeX를 사용하여 수학 문서를 작성하는 방법을 학습하기 위한 가이드입니다.
+LaTeX는 수식을 아름답게 조판할 수 있는 강력한 도구로, 특히 수학과 과학 분야에서 널리 사용됩니다.
+이 문서를 통해 기본적인 수식 작성부터 고급 기능까지 단계적으로 학습할 수 있습니다.
+
+% =====================================
 \section{기본 수식 작성법}
 
-\subsection{인라인 수식}
+\subsection{인라인 수식과 디스플레이 수식}
 
-텍스트 중간에 수식을 넣을 때는 달러 기호를 사용합니다: $a^2 + b^2 = c^2$
-\begin{equation}
-    \int_{0}^{\infty} e^{-x^2} dx = \frac{\sqrt{\pi}}{2}
-\end{equation}
+LaTeX에서 수식을 작성하는 방법은 크게 두 가지로 나뉩니다.
 
-\subsection{블록 수식}
-별도의 줄에 수식을 표시할 때:
+\subsubsection{인라인 수식}
+텍스트 중간에 수식을 넣을 때는 달러 기호를 사용합니다: $a^2 + b^2 = c^2$.
+이렇게 작성하면 수식이 텍스트와 같은 줄에 나타납니다.
+예를 들어, 원의 넓이는 $A = \pi r^2$로 표현할 수 있습니다.
+
+\subsubsection{디스플레이 수식}
+별도의 줄에 수식을 표시하고 싶을 때는 다음과 같이 작성합니다:
 \[
     E = mc^2
 \]
+또는 번호가 있는 수식을 원한다면:
+\begin{equation}
+    \int_{0}^{\infty} e^{-x^2} dx = \frac{\sqrt{\pi}}{2}
+\end{equation}
 
 
 % =====================================
 \section{자주 사용하는 수학 기호}
 
 \subsection{기본 연산}
+수학 문서 작성시 가장 자주 사용하는 기본 연산 기호들입니다:
+
 \begin{itemize}
-    \item 분수: $\frac{a}{b}$
-    \item 제곱근: $\sqrt{x}$, $\sqrt[n]{x}$
-    \item 위첨자/아래첨자: $x^2$, $a_n$, $x_i^2$
-    \item 합/곱: $\sum_{i=1}^{n} i$, $\prod_{i=1}^{n} i$
+    \item 분수: $\frac{a}{b}$는 \verb|\frac{a}{b}|로 작성
+    \item 제곱근: $\sqrt{x}$는 \verb|\sqrt{x}|로, $\sqrt[n]{x}$는 \verb|\sqrt[n]{x}|로 작성
+    \item 위첨자/아래첨자: $x^2$는 \verb|x^2|로, $a_n$은 \verb|a_n|으로 작성
+    \item 동시 사용: $x_i^2$는 \verb|x_i^2|로 작성
+    \item 합: $\sum_{i=1}^{n} i = \frac{n(n+1)}{2}$
+    \item 곱: $\prod_{i=1}^{n} i = n!$
 \end{itemize}
 
 \subsection{미적분}
+미적분 관련 기호들은 다음과 같이 작성합니다:
+
 \begin{itemize}
-    \item 극한: $\lim_{x \to \infty} f(x)$
-    \item 미분: $\frac{df}{dx}$, $\frac{\partial f}{\partial x}$
-    \item 적분: $\int_{a}^{b} f(x) dx$
+    \item 극한: $\lim_{x \to \infty} \frac{1}{x} = 0$
+    \item 일반 미분: $\frac{df}{dx}$ 또는 $f'(x)$
+    \item 편미분: $\frac{\partial f}{\partial x}$
+    \item 정적분: $\int_{a}^{b} f(x) dx$
+    \item 부정적분: $\int f(x) dx = F(x) + C$
 \end{itemize}
 
 \subsection{선형대수}
+벡터와 행렬 표현법:
+
 \begin{itemize}
-    \item 벡터: $\vec{v}$, $\mathbf{v}$
-    \item 행렬:
-    $\begin{pmatrix}
-        a & b \\
-        c & d
-    \end{pmatrix}$
-    \item 행렬식: $\det(A)$, $|A|$
+    \item 벡터 표기법:
+    \begin{itemize}
+        \item 화살표 벡터: $\vec{v} = (v_1, v_2, v_3)$
+        \item 굵은 글씨: $\mathbf{v} = (v_1, v_2, v_3)$
+    \end{itemize}
+    \item 2×2 행렬: $A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$
+    \item 행렬식: $\det(A) = |A| = ad - bc$
+    \item 전치행렬: $A^T$, 역행렬: $A^{-1}$
 \end{itemize}
 
 % =====================================
-\section{정리와 증명 예제}
+\section{정리와 증명 환경}
+
+LaTeX는 수학 문서의 구조화를 위한 다양한 환경을 제공합니다.
 
 \begin{definition}[소수]
     1보다 큰 자연수 중에서 1과 자기 자신만을 약수로 가지는 수를 \textbf{소수}(prime number)라고 한다.
 \end{definition}
 
-\begin{theorem}[피타고라스 정리]
+\begin{theorem}[피타고라스 정리]\label{thm:pythagoras}
     직각삼각형에서 빗변의 제곱은 나머지 두 변의 제곱의 합과 같다.
     \[
         c^2 = a^2 + b^2
@@ -92,36 +118,104 @@
 \end{theorem}
 
 \begin{proof}
-    여기에 증명을 작성합니다.
-    \[
-        (a+b)^2 = a^2 + 2ab + b^2
-    \]
-    따라서 증명이 완료되었습니다.
+    직각삼각형의 세 변을 $a$, $b$, $c$라 하자. 여기서 $c$는 빗변이다.
+    넓이를 이용한 증명:
+    \begin{align}
+        (a+b)^2 &= a^2 + 2ab + b^2 \nonumber \\
+        c^2 + 4 \cdot \frac{1}{2}ab &= (a+b)^2 \nonumber \\
+        c^2 + 2ab &= a^2 + 2ab + b^2 \nonumber \\
+        c^2 &= a^2 + b^2
+    \end{align}
 \end{proof}
 
+\begin{lemma}
+    모든 짝수의 제곱은 4의 배수이다.
+\end{lemma}
+
 \begin{example}
-    $x^2 - 5x + 6 = 0$의 해를 구하시오.
+    이차방정식 $x^2 - 5x + 6 = 0$의 해를 구하시오.
 
     \textbf{풀이:}
-    인수분해하면 $(x-2)(x-3) = 0$
-    따라서 $x = 2$ 또는 $x = 3$
+    좌변을 인수분해하면:
+    \begin{align*}
+        x^2 - 5x + 6 &= (x-2)(x-3) = 0
+    \end{align*}
+    따라서 $x = 2$ 또는 $x = 3$이다.
 \end{example}
+
+% =====================================
+\section{고급 수식 작성}
+
+\subsection{여러 줄 수식 정렬}
+align 환경을 사용하면 여러 줄의 수식을 깔끔하게 정렬할 수 있습니다:
+
+\begin{align}
+    (x+y)^3 &= (x+y)(x+y)^2 \\
+            &= (x+y)(x^2 + 2xy + y^2) \\
+            &= x^3 + 2x^2y + xy^2 + x^2y + 2xy^2 + y^3 \\
+            &= x^3 + 3x^2y + 3xy^2 + y^3
+\end{align}
+
+\subsection{조건부 수식}
+경우에 따라 달라지는 함수를 표현할 때:
+
+\[
+f(x) = \begin{cases}
+    x^2 & \text{if } x \geq 0 \\
+    -x^2 & \text{if } x < 0
+\end{cases}
+\]
+
+\subsection{행렬 연산}
+행렬의 곱셈 예제:
+
+\[
+\begin{pmatrix}
+    1 & 2 \\
+    3 & 4
+\end{pmatrix}
+\begin{pmatrix}
+    a \\
+    b
+\end{pmatrix}
+=
+\begin{pmatrix}
+    a + 2b \\
+    3a + 4b
+\end{pmatrix}
+\]
 
 % =====================================
 \section{연습 문제}
 
-\subsection{문제 1}
+\subsection{문제 1: 적분}
 다음 적분을 계산하시오:
 \[
     \int_0^1 x^2 dx
 \]
 
-\subsection{풀이}
+\textbf{풀이:}
 \begin{align}
-    \int_0^1 x^2 dx &= \left[ \frac{x^3}{3} \right]_0^1 \\
-                     &= \frac{1}{3} - 0 \\
+    \int_0^1 x^2 dx &= \left[ \frac{x^3}{3} \right]_0^1 \tag{적분 공식} \\
+                     &= \frac{1^3}{3} - \frac{0^3}{3} \nonumber \\
                      &= \frac{1}{3}
 \end{align}
+
+\subsection{문제 2: 급수}
+다음 급수의 합을 구하시오:
+\[
+    \sum_{k=1}^{n} k = ?
+\]
+
+\textbf{풀이:}
+가우스의 방법을 사용하면:
+\begin{align*}
+    S &= 1 + 2 + 3 + \cdots + n \\
+    S &= n + (n-1) + \cdots + 1 \\
+    2S &= (n+1) + (n+1) + \cdots + (n+1) \\
+    2S &= n(n+1) \\
+    S &= \frac{n(n+1)}{2}
+\end{align*}
 
 % =====================================
 \section{유용한 팁}
@@ -200,8 +294,25 @@
 \end{itemize}
 
 % =====================================
-% 새로운 장을 추가하려면:
-% \section{제목}
-% 내용...
+\section{결론}
+
+이 문서를 통해 LaTeX의 기본적인 수식 작성 방법부터 정리 환경, 고급 기능까지 학습했습니다.
+주요 학습 내용을 요약하면:
+
+\begin{enumerate}
+    \item 인라인 수식과 디스플레이 수식의 차이점
+    \item 기본 수학 기호와 연산자 사용법
+    \item 정리, 정의, 증명 환경의 활용
+    \item 여러 줄 수식 정렬과 번호 제어
+    \item 행렬과 조건부 수식 작성법
+\end{enumerate}
+
+LaTeX는 처음에는 복잡해 보일 수 있지만, 한 번 익숙해지면 매우 강력한 도구입니다.
+이 가이드가 LaTeX 학습에 도움이 되기를 바랍니다.
+
+\vspace{1cm}
+\begin{center}
+    \textit{Practice makes perfect!}
+\end{center}
 
 \end{document}
