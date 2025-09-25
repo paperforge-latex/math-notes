@@ -1,0 +1,46 @@
+name: Advanced LaTeX Build
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:  # 수동 실행 가능
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0  # 전체 히스토리
+
+    - name: Compile multiple documents
+      uses: xu-cheng/latex-action@v2
+      with:
+        root_file: |
+          math_notes.tex
+          test.tex
+        compiler: xelatex  # 한글 지원
+        latexmk_use_xelatex: true
+
+    - name: Create timestamp
+      id: date
+      run: echo "date=$(date +'%Y%m%d_%H%M%S')" >> $GITHUB_OUTPUT
+
+    - name: Rename PDFs with date
+      run: |
+        mv math_notes.pdf math_notes_${{ steps.date.outputs.date }}.pdf
+        mv test.pdf test_${{ steps.date.outputs.date }}.pdf || true
+
+    - name: Upload to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./
+        keep_files: true
+        exclude_assets: '*.tex,*.aux,*.log'
+
+    - name: Send notification (Discord/Slack)
+      if: success()
+      run: |
+        echo "PDF 컴파일 완료! 다운로드: ${{ github.server_url }}/${{ github.repository }}/releases/latest"

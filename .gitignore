@@ -1,0 +1,35 @@
+# LaTeX temporary files
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+.*.lb
+*.bbl
+*.bcf
+*.blg
+*-blx.aux
+*-blx.bib
+*.run.xml
+*.fdb_latexmk
+*.synctex
+*.synctex(busy)
+*.synctex.gz
+*.synctex.gz(busy)
+*.pdfsync
+
+# Minted
+_minted*/
+*.pyg
+
+# MacOS
+.DS_Store
+
+# PDF outputs (optional - 주석 처리하면 PDF도 저장)
+# *.pdf

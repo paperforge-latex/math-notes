@@ -1,0 +1,59 @@
+name: Build LaTeX document
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '**.tex'
+      - '**.sty'
+      - '**.bib'
+      - '**.cls'
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:  # 수동 실행 가능
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Compile LaTeX (math_notes)
+      uses: xu-cheng/latex-action@v3
+      with:
+        root_file: math_notes.tex
+        compiler: xelatex
+        latexmk_use_xelatex: true
+        args: -interaction=nonstopmode -file-line-error
+
+    - name: Create date stamp
+      id: date
+      run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+
+    - name: Upload PDF as Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: math-notes-${{ steps.date.outputs.date }}
+        path: math_notes.pdf
+
+    - name: Create Release
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      uses: softprops/action-gh-release@v1
+      with:
+        files: math_notes.pdf
+        tag_name: build-${{ github.run_number }}
+        name: Build #${{ github.run_number }} (${{ steps.date.outputs.date }})
+        body: |
+          자동 빌드된 PDF 파일입니다.
+
+          📄 **파일**: math_notes.pdf
+          📅 **날짜**: ${{ steps.date.outputs.date }}
+          🔢 **빌드 번호**: ${{ github.run_number }}
+
+          커밋: ${{ github.sha }}
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
