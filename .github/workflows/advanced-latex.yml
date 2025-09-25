@@ -14,12 +14,20 @@ jobs:
       with:
         fetch-depth: 0  # 전체 히스토리
 
+    - name: Find all TeX files
+      id: tex-files
+      run: |
+        tex_files=$(find . -name "*.tex" -maxdepth 1 | sed 's|./||')
+        echo "files<<EOF" >> $GITHUB_OUTPUT
+        echo "$tex_files" >> $GITHUB_OUTPUT
+        echo "EOF" >> $GITHUB_OUTPUT
+        echo "Found TeX files:"
+        echo "$tex_files"
+
     - name: Compile multiple documents
       uses: xu-cheng/latex-action@v2
       with:
-        root_file: |
-          math_notes.tex
-          test.tex
+        root_file: ${{ steps.tex-files.outputs.files }}
         compiler: xelatex  # 한글 지원
         latexmk_use_xelatex: true
 
@@ -29,8 +37,12 @@ jobs:
 
     - name: Rename PDFs with date
       run: |
-        mv math_notes.pdf math_notes_${{ steps.date.outputs.date }}.pdf
-        mv test.pdf test_${{ steps.date.outputs.date }}.pdf || true
+        for pdf in *.pdf; do
+          if [ -f "$pdf" ]; then
+            base_name=$(basename "$pdf" .pdf)
+            mv "$pdf" "${base_name}_${{ steps.date.outputs.date }}.pdf"
+          fi
+        done
 
     - name: Upload to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
