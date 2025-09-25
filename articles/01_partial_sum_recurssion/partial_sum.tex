@@ -1,26 +1,16 @@
-\documentclass[12pt,a4paper]{article}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{kotex}            % 한글 지원
-\usepackage{amsmath,amssymb}  % 수학 기호 및 수식 패키지
-\usepackage{amsthm}           % 정리, 증명 환경
-\usepackage{graphicx}         % 이미지 삽입
-\usepackage{geometry}         % 페이지 여백 설정
-\usepackage{hyperref}         % 하이퍼링크
-\usepackage{color}            % 색상 지원
-\usepackage{indentfirst}
+\documentclass[a4paper,12pt]{article}
 
-% 페이지 여백 설정
-\geometry{margin=2.5cm}
+\input{../../templates.tex}
 
-% 정리, 정의, 예제 환경 설정
-\newtheorem{theorem}{정리}[section]
-\newtheorem{definition}{정의}[section]
-\newtheorem{example}{예제}[section]
-\newtheorem{lemma}{보조정리}[section]
+\hypersetup{
+  unicode=true,                    % 유니코드 북마크
+  pdftitle={Mathematical Articles},            % PDF 메타
+  pdfauthor={Taeyang Lee},
+  pdfsubject={Mathematical Articles},
+  pdfcreator={LuaLaTeX}
+}
 
-% 증명 환경 한글화
-\renewcommand{\proofname}{증명}
+% =====================================
 
 \title{부분합을 포함하는 점화식}
 \author{Taeyang Lee}
@@ -33,137 +23,88 @@
 \newpage
 
 % =====================================
-
-\section{KMO 초급 대수}
-
+\section{대수}
 \subsection{267번}
 \setlength{\parindent}{20pt}
-자연수 $n$에 대하여 모든 항이 양수인 수열 ${a_n}$이 
-$\sum_{k=1}^n {a_n} = \frac{1}{2} \left( {a_n} + \frac{2}{a_n} \right) $
-일때, 
+    자연수 $n$에 대하여 모든 항이 양수인 수열 ${a_n}$이 
+    $\sum_{k=1}^n {a_n} = \frac{1}{2} \left( {a_n} + \frac{2}{a_n} \right) $
+    일때, 
 
-$\sum _ {k=1} ^{128} a_k$의 값을 구하여라
-
+    $\sum _ {k=1} ^{128} a_k$의 값을 구하여라
 
 \subsection{풀이}
+
 \begin{align}
-	S_{n-1} &= S_{n} - a_n \\
-	&= \frac{1}{2} \left( a_n + \frac{2}{a_n} \right) - a_n 
-	\\
-    \int_0^1 x^2 dx &= \left[ \frac{x^3}{3} \right]_0^1 \\
-                     &= \frac{1}{3} - 0 \\
-                     &= \frac{1}{3}
+    S_n &= \sum_{k=1}^n a_n \nonumber \\
+        &= \frac{1}{2}\left(a_n + \frac{2}{a_n}\right)  \label{eq:S_n}\\[6pt]
+    \nonumber \\
+    S_{n-1} &= S_n - a_n \nonumber \\
+            &= \frac{1}{2}\left(a_n + \frac{2}{a_n}\right) - a_n \nonumber \\
+            &= \frac{1}{2}\left(-a_n + \frac{2}{a_n}\right) \label{eq:S_n-1}
 \end{align}
 
-\end{align}
-
-
-
-
-% \section{기본 수식 작성법}
-
-% \subsection{인라인 수식}
-
-% 텍스트 중간에 수식을 넣을 때는 달러 기호를 사용합니다: $a^2 + b^2 = c^2$
-% \begin{equation}
-%     \int_{0}^{\infty} e^{-x^2} dx = \frac{\sqrt{\pi}}{2}
-% \end{equation}
-
-% \subsection{블록 수식}
-% 별도의 줄에 수식을 표시할 때:
-% \[
-%     E = mc^2
-% \]
-
-
-% % =====================================
-% \section{자주 사용하는 수학 기호}
-
-% \subsection{기본 연산}
-% \begin{itemize}
-%     \item 분수: $\frac{a}{b}$
-%     \item 제곱근: $\sqrt{x}$, $\sqrt[n]{x}$
-%     \item 위첨자/아래첨자: $x^2$, $a_n$, $x_i^2$
-%     \item 합/곱: $\sum_{i=1}^{n} i$, $\prod_{i=1}^{n} i$
-% \end{itemize}
-
-% \subsection{미적분}
-% \begin{itemize}
-%     \item 극한: $\lim_{x \to \infty} f(x)$
-%     \item 미분: $\frac{df}{dx}$, $\frac{\partial f}{\partial x}$
-%     \item 적분: $\int_{a}^{b} f(x) dx$
-% \end{itemize}
-
-% \subsection{선형대수}
-% \begin{itemize}
-%     \item 벡터: $\vec{v}$, $\mathbf{v}$
-%     \item 행렬:
-%     $\begin{pmatrix}
-%         a & b \\
-%         c & d
-%     \end{pmatrix}$
-%     \item 행렬식: $\det(A)$, $|A|$
-% \end{itemize}
-
-% % =====================================
-% \section{정리와 증명 예제}
-
-% \begin{definition}[소수]
-%     1보다 큰 자연수 중에서 1과 자기 자신만을 약수로 가지는 수를 \textbf{소수}(prime number)라고 한다.
-% \end{definition}
-
-% \begin{theorem}[피타고라스 정리]
-%     직각삼각형에서 빗변의 제곱은 나머지 두 변의 제곱의 합과 같다.
-%     \[
-%         c^2 = a^2 + b^2
-%     \]
-% \end{theorem}
-
-% \begin{proof}
-%     여기에 증명을 작성합니다.
-%     \[
-%         (a+b)^2 = a^2 + 2ab + b^2
-%     \]
-%     따라서 증명이 완료되었습니다.
-% \end{proof}
-
-% \begin{example}
-%     $x^2 - 5x + 6 = 0$의 해를 구하시오.
-
-%     \textbf{풀이:}
-%     인수분해하면 $(x-2)(x-3) = 0$
-%     따라서 $x = 2$ 또는 $x = 3$
-% \end{example}
-
-% % =====================================
-% \section{연습 문제}
-
-% \subsection{문제 1}
-% 다음 적분을 계산하시오:
-% \[
-%     \int_0^1 x^2 dx
-% \]
-
-% \subsection{풀이}
-% \begin{align}
-%     \int_0^1 x^2 dx &= \left[ \frac{x^3}{3} \right]_0^1 \\
-%                      &= \frac{1}{3} - 0 \\
-%                      &= \frac{1}{3}
-% \end{align}
-
-% % =====================================
-% \section{유용한 팁}
-
-% \begin{itemize}
-%     \item 여러 줄 수식은 \texttt{align} 환경 사용
-%     \item 수식 번호 제거는 \texttt{*} 추가 (예: \texttt{align*})
-%     \item 괄호 크기 자동 조절: \texttt{\textbackslash left(}, \texttt{\textbackslash right)}
-%     \item 수식 내 텍스트: \texttt{\textbackslash text\{...\}}
-% \end{itemize}
 
 % =====================================
-% 새로운 장을 추가하려면:
-% \section{제목}
-% 내용...
+\Cref{eq:S_n}에서 $S_n$도 $a_n$으로 표현되어 있고,
+
+\Cref{eq:S_n-1}에서 $S_{n-1}$도 $a_n$으로 표현되어 있음을 알 수 있다.
+
+즉, $S_n$과 $S_{n-1}$이 $a_n$을 매개로 한 관계로 연결된다.
+
+이들을 각각 더하고 빼는 것은 $a_n$을 분모와 분자에 올려주는 역할을 하게 되는데,
+
+이를 식으로 표현하면 아래와 같다.
+% =====================================
+\begin{align}
+    S_n + S_{n-1} &= \frac{2}{a_n} \label{eq:sum}\\
+    S_n - S_{n-1} &= a_n \label{eq:diff}
+\end{align}
+
+% =====================================
+\Cref{eq:sum,eq:diff}를 서로 곱하면
+% =====================================
+\begin{align}
+    {S_n}^2 - {S_{n-1}}^2 &= 2 \label{eq:diff_square}
+\end{align}
+
+\newpage
+이때, ${S_n}^2$을 새로운 수열 ${T_n}$이라고 하면,
+
+\begin{align}
+    T_n &= {S_n}^2 \nonumber \\
+    T_n &= T_{n-1} + 2 \label{eq:Tn}
+\end{align}
+
+$T_n$은 등차수열이므로,
+\begin{align}
+    T_n &= T_1 + (n-1) \cdot 2 \label{eq:Tn2}
+\end{align}
+
+
+\Cref{eq:S_n} 에서, $n=1$을 대입하면,
+
+\begin{align}
+    S_1 = a_1 &= \frac{1}{2}\left(a_1 + \frac{2}{a_1}\right) \nonumber \\
+        {a_1} &= \frac{2}{a_1} \nonumber \\
+        \therefore a_1 &= \sqrt{2} \label{eq:a_1}
+\end{align}
+
+$T_1 = {S_1}^2 = {a_1}^2 = 2$이므로,
+\begin{align}
+    T_n &= 2 + (n-1) \cdot 2 = 2n \nonumber \\
+    T_n &= {S_n}^2 = 2n \nonumber \\
+    \therefore \quad S_n &= \sqrt{2n} \label{eq:Sn2}
+\end{align}
+
+
+이때, \cref{eq:Sn2}에 $n=128$을 대입하면,
+\begin{align*}
+    S_{128} = \sqrt{2\times 128} =16
+\end{align*}
+
+일반항 $a_n$은 아래와 같이 구할 수 있다.
+\begin{align*}
+    a_n = S_n - S_{n-1} = \sqrt{2n} - \sqrt{2(n-1)}
+\end{align*}
 
 \end{document}
