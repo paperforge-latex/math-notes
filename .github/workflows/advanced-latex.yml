@@ -44,15 +44,13 @@ jobs:
           fi
         done
 
-    - name: Upload to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
+    - name: Upload PDFs as Artifacts
+      uses: actions/upload-artifact@v4
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./
-        keep_files: true
-        exclude_assets: '*.tex,*.aux,*.log'
+        name: compiled-pdfs-${{ steps.date.outputs.date }}
+        path: "*.pdf"
 
     - name: Send notification (Discord/Slack)
       if: success()
       run: |
-        echo "PDF 컴파일 완료! 다운로드: ${{ github.server_url }}/${{ github.repository }}/releases/latest"
+        echo "PDF 컴파일 완료! 아티팩트에서 다운로드 가능합니다."
