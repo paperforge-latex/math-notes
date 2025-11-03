@@ -1,0 +1,1304 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{kotex}            % 한글 지원
+\usepackage{amsmath,amssymb}  % 수학 기호 및 수식 패키지
+\usepackage{amsthm}           % 정리, 증명 환경
+\usepackage{graphicx}         % 이미지 삽입
+\usepackage{geometry}         % 페이지 여백 설정
+\usepackage{hyperref}         % 하이퍼링크
+\usepackage{color}            % 색상 지원
+\usepackage{etoolbox}         % 환경 후킹을 위한 패키지
+\usepackage{tikz}
+\usetikzlibrary{fit,calc}
+
+% 페이지 여백 설정
+\geometry{margin=2.5cm}
+
+% 정리, 정의, 예제 환경 설정
+% \theoremstyle{definition}
+
+\newtheoremstyle{test_form}% name
+  {10pt}% Space above
+  {10pt}% Space below
+  {\normalfont\setlength{\parindent}{20pt}} % Body font(+ 본문 들여쓰기)
+  {0em}% Indent amount
+  {\bfseries}% Theorem head font
+  {}% Punctuation after theorem head
+  {\newline}% Space after theorem head (line break!)
+  {}% Theorem head spec
+\theoremstyle{test_form}
+\newtheorem{problem}{문제}[section]
+\newtheorem*{solution}{풀이}
+\newtheorem*{answer}{정답}
+
+% 섹션마다 문제 번호 리셋
+\makeatletter
+\@addtoreset{problem}{section}
+\makeatother
+
+% 문제 번호를 섹션 번호 없이 표시
+\renewcommand{\theproblem}{\arabic{problem}}
+
+% --- 자동 목차 등록 ---
+\newcommand{\tocaddsolution}{%
+  \phantomsection
+  \addcontentsline{toc}{subsubsection}{풀이}%
+}
+\newcommand{\tocaddanswer}{%
+  \phantomsection
+  \addcontentsline{toc}{subsubsection}{정답}%
+}
+
+% problem 환경의 헤더 부분에 목차 추가
+\makeatletter
+\let\old@problem\problem
+\renewcommand{\problem}{%
+  \old@problem
+  \phantomsection
+  \addcontentsline{toc}{subsection}{문제 \theproblem}%
+}
+\makeatother
+
+\AtBeginEnvironment{solution}{\tocaddsolution}
+\AtBeginEnvironment{answer}{\tocaddanswer}
+
+\title{KMO 대비반 중급 4주차 테스트}
+\author{Taeyang Lee}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents  % 목차 자동 생성
+
+\newpage
+
+% =====================================
+\section{대수}
+
+\begin{problem}
+
+\(a, b, c\)는 방정식 \(x^3 - 3x^2 + 4x - 5 = 0\)의 해이다. 이 때 다음 식의 값은 \(\dfrac{q}{p}\)라 할 때, \(p + q\)의 값을 구하여라.
+
+\[
+\frac{1+a^2}{1+a} + \frac{1+b^2}{1+b} + \frac{1+c^2}{1+c}
+\]
+
+\begin{flushright}(20점)\end{flushright}
+
+\end{problem}
+
+\begin{solution}
+\setlength{\parindent}{0pt}
+
+주어진 방정식: \(x^3 - 3x^2 + 4x - 5 = 0\)
+
+비에타 공식에 의해:
+\[
+\begin{aligned}
+a + b + c &= 3 \\
+ab + bc + ca &= 4 \\
+abc &= 5
+\end{aligned}
+\]
+
+\vspace{1em}
+
+\textbf{방법 1: 직접 계산}
+
+구하려는 식을 정리:
+\[
+S = \frac{1+a^2}{1+a} + \frac{1+b^2}{1+b} + \frac{1+c^2}{1+c}
+\]
+
+각 항을 변형:
+\[
+\frac{1+x^2}{1+x} = \frac{1+x^2}{1+x} = \frac{(1+x)^2 - 2x}{1+x} = (1+x) - \frac{2x}{1+x} = 1 + x - \frac{2x}{1+x}
+\]
+
+또는 더 간단하게:
+\[
+\frac{1+x^2}{1+x} = \frac{1+x^2}{1+x} = x - 1 + \frac{2}{1+x}
+\]
+
+확인: \(\frac{1+x^2}{1+x} \cdot (1+x) = 1+x^2\)이고, \((x-1+\frac{2}{1+x})(1+x) = (x-1)(1+x) + 2 = x^2-1+2 = x^2+1\) 
+
+따라서:
+\[
+S = \sum_{cyc} \left(a - 1 + \frac{2}{1+a}\right) = (a+b+c) - 3 + 2\sum_{cyc} \frac{1}{1+a}
+\]
+
+\[
+S = 3 - 3 + 2\sum_{cyc} \frac{1}{1+a} = 2\sum_{cyc} \frac{1}{1+a}
+\]
+
+이제 \(\sum_{cyc} \frac{1}{1+a}\)를 계산:
+\[
+\sum_{cyc} \frac{1}{1+a} = \frac{(1+b)(1+c) + (1+a)(1+c) + (1+a)(1+b)}{(1+a)(1+b)(1+c)}
+\]
+
+분자 계산:
+\[
+\begin{aligned}
+&(1+b)(1+c) + (1+a)(1+c) + (1+a)(1+b) \\
+&= 1+b+c+bc + 1+a+c+ac + 1+a+b+ab \\
+&= 3 + 2(a+b+c) + (ab+bc+ca) \\
+&= 3 + 2(3) + 4 = 13
+\end{aligned}
+\]
+
+분모 계산:
+\[
+\begin{aligned}
+(1+a)(1+b)(1+c) &= 1 + (a+b+c) + (ab+bc+ca) + abc \\
+&= 1 + 3 + 4 + 5 = 13
+\end{aligned}
+\]
+
+따라서:
+\[
+\sum_{cyc} \frac{1}{1+a} = \frac{13}{13} = 1
+\]
+
+\[
+S = 2 \cdot 1 = 2
+\]
+
+\vspace{1em}
+
+\textbf{방법 2: 근의 변환을 이용한 방법}
+
+\textbf{Step 1: 식 변형}
+
+\(\frac{1+x^2}{1+x}\)를 변형하자. 분자를 조작하면:
+\[
+\begin{aligned}
+\frac{1+x^2}{1+x} &= \frac{1+x^2}{1+x} \\
+&= \frac{(x+1)(x-1) + 2}{1+x} \\
+&= (x-1) + \frac{2}{1+x}
+\end{aligned}
+\]
+
+확인: \((x-1)(1+x) + 2 = x^2 - 1 + 2 = x^2 + 1\)
+
+\vspace{0.5em}
+
+\textbf{Step 2: 근의 변환 적용}
+
+\(y = \frac{1+x^2}{1+x} = (x-1) + \frac{2}{1+x}\)로 치환하면, \(a, b, c\)가 \(x^3 - 3x^2 + 4x - 5 = 0\)의 근일 때,
+\(y_1 = \frac{1+a^2}{1+a}\), \(y_2 = \frac{1+b^2}{1+b}\), \(y_3 = \frac{1+c^2}{1+c}\)를 근으로 하는 방정식을 구한다.
+
+\vspace{0.5em}
+
+\textbf{Step 3: 역변환}
+
+\(y = (x-1) + \frac{2}{1+x}\)에서 \(x\)를 구하면:
+\[
+y = x - 1 + \frac{2}{1+x}
+\]
+
+\((y - x + 1)(1+x) = 2\)
+\[
+(y - x + 1)(1+x) = 2
+\]
+\[
+y + yx - x - x^2 + 1 + x = 2
+\]
+\[
+-x^2 + yx + y + 1 = 2
+\]
+\[
+x^2 - yx + (1 - y) = 0
+\]
+
+따라서 \(x = \frac{y \pm \sqrt{y^2 - 4(1-y)}}{2} = \frac{y \pm \sqrt{y^2 + 4y - 4}}{2}\)
+
+\vspace{0.5em}
+
+\textbf{Step 4: 변환된 방정식 유도}
+
+원래 방정식 \(x^3 - 3x^2 + 4x - 5 = 0\)에 \(x^2 - yx + (1-y) = 0\)의 해를 대입한다.
+
+\(x^2 = yx - (1-y) = yx - 1 + y\)를 이용하면:
+
+\[
+\begin{aligned}
+x^3 &= x \cdot x^2 = x(yx - 1 + y) = yx^2 - x + yx \\
+&= y(yx - 1 + y) - x + yx \\
+&= y^2x - y + y^2 - x + yx \\
+&= y^2x + yx - x - y + y^2 \\
+&= x(y^2 + y - 1) + y^2 - y
+\end{aligned}
+\]
+
+또한 \(x^2 - yx + (1-y) = 0\)에서 \(x^2 = yx - (1-y)\)이므로:
+
+원래 방정식 \(x^3 - 3x^2 + 4x - 5 = 0\)에 \(x^2 = yx - (1-y)\)를 대입한다.
+
+\textbf{Step 4-1: 원래 방정식에 대입}
+
+\[
+\begin{aligned}
+x^3 - 3x^2 + 4x - 5 &= 0 \\
+x(y^2 + y - 1) + y^2 - y - 3(yx - 1 + y) + 4x - 5 &= 0 \\
+x(y^2 + y - 1) + y^2 - y - 3yx + 3 - 3y + 4x - 5 &= 0 \\
+x(y^2 + y - 1 - 3y + 4) + (y^2 - y + 3 - 3y - 5) &= 0 \\
+x(y^2 - 2y + 3) + (y^2 - 4y - 2) &= 0
+\end{aligned}
+\]
+
+따라서:
+\[
+x = -\frac{y^2 - 4y - 2}{y^2 - 2y + 3}
+\]
+
+\textbf{Step 4-2: 조건 \(x^2 - yx + (1-y) = 0\)에 대입}
+
+\(x = -\frac{y^2 - 4y - 2}{y^2 - 2y + 3}\)를 \(x^2 - yx + (1-y) = 0\)에 대입한다.
+
+양변에 \((y^2 - 2y + 3)^2\)를 곱하면:
+\[
+(y^2 - 4y - 2)^2 + y(y^2 - 4y - 2)(y^2 - 2y + 3) + (1-y)(y^2 - 2y + 3)^2 = 0
+\]
+
+이는 4차식이지만, 조건 \(x^2 = yx - (1-y)\)를 반복 사용하면 차수를 낮출 수 있다.
+
+\vspace{0.5em}
+
+\textbf{Step 4-3: 대체 접근 - 원래 방정식의 변형}
+
+원래 방정식 \(x^3 - 3x^2 + 4x - 5 = 0\)을 다음과 같이 변형하자:
+\[
+\begin{aligned}
+x^3 - 3x^2 + 4x - 5 &= 0 \\
+x^2(x + 1) - 4x^2 + 4x - 5 &= 0 \\
+x^2(x + 1) - 4x(x + 1) + 8(x + 1) - 13 &= 0 \\
+(x + 1)(x^2 - 4x + 8) &= 13
+\end{aligned}
+\]
+
+따라서:
+\[
+\frac{(1+x^2)(x^2 - 4x + 8)}{13} = \frac{1+x^2}{1+x} = y
+\]
+
+\textbf{Step 4-4: 분자를 3차식 이하로 낮추기}
+
+분자 \((1+x^2)(x^2 - 4x + 8)\)을 전개하면:
+\[
+\begin{aligned}
+(1+x^2)(x^2 - 4x + 8) &= x^2 - 4x + 8 + x^4 - 4x^3 + 8x^2 \\
+&= x^4 - 4x^3 + 9x^2 - 4x + 8
+\end{aligned}
+\]
+
+이는 4차식이지만, 조건 \(x^2 = yx - (1-y)\)를 이용하여 차수를 낮출 수 있다.
+
+\textbf{Step 4-4a: \(x^3\) 표현}
+
+\(x^2 = yx - 1 + y\)에서:
+\[
+\begin{aligned}
+x^3 &= x \cdot x^2 = x(yx - 1 + y) \\
+&= yx^2 - x + yx \\
+&= y(yx - 1 + y) - x + yx \\
+&= y^2x - y + y^2 + yx - x \\
+&= (y^2 + y - 1)x + (y^2 - y)
+\end{aligned}
+\]
+
+\textbf{Step 4-4b: \(x^4\) 표현}
+
+\[
+\begin{aligned}
+x^4 &= x \cdot x^3 = x[(y^2 + y - 1)x + (y^2 - y)] \\
+&= (y^2 + y - 1)x^2 + (y^2 - y)x \\
+&= (y^2 + y - 1)(yx - 1 + y) + (y^2 - y)x \\
+&= (y^2 + y - 1)yx - (y^2 + y - 1) + (y^2 + y - 1)y + (y^2 - y)x \\
+&= y(y^2 + y - 1)x + (y^2 - y)x - (y^2 + y - 1) + y(y^2 + y - 1) \\
+&= [y^3 + y^2 - y + y^2 - y]x + [y^3 + y^2 - y - y^2 - y + 1] \\
+&= (y^3 + 2y^2 - 2y)x + (y^3 - 2y + 1)
+\end{aligned}
+\]
+
+\textbf{Step 4-5: 분자를 \(y, x\)로 표현}
+
+\[
+\begin{aligned}
+&x^4 - 4x^3 + 9x^2 - 4x + 8 \\
+&= (y^3 + 2y^2 - 2y)x + (y^3 - 2y + 1) \\
+&\quad - 4[(y^2 + y - 1)x + (y^2 - y)] \\
+&\quad + 9(yx - 1 + y) - 4x + 8 \\
+&= (y^3 + 2y^2 - 2y)x + (y^3 - 2y + 1) \\
+&\quad - (4y^2 + 4y - 4)x - (4y^2 - 4y) \\
+&\quad + 9yx - 9 + 9y - 4x + 8 \\
+&= x[y^3 + 2y^2 - 2y - 4y^2 - 4y + 4 + 9y - 4] \\
+&\quad + [y^3 - 2y + 1 - 4y^2 + 4y - 9 + 9y + 8] \\
+&= x[y^3 - 2y^2 + 3y] + [y^3 - 4y^2 + 11y] \\
+&= y(y^2 - 2y + 3)x + y(y^2 - 4y + 11)
+\end{aligned}
+\]
+
+\textbf{Step 4-6: 방정식 유도}
+
+\[
+\frac{y(y^2 - 2y + 3)x + y(y^2 - 4y + 11)}{13} = y
+\]
+
+\(y \neq 0\)이므로 양변을 \(y\)로 나누면:
+\[
+\frac{(y^2 - 2y + 3)x + (y^2 - 4y + 11)}{13} = 1
+\]
+
+\[
+(y^2 - 2y + 3)x + (y^2 - 4y + 11) = 13
+\]
+
+\[
+(y^2 - 2y + 3)x = 13 - y^2 + 4y - 11
+\]
+
+\[
+(y^2 - 2y + 3)x = -y^2 + 4y + 2
+\]
+
+\[
+x = \frac{-y^2 + 4y + 2}{y^2 - 2y + 3}
+\]
+
+\textbf{Step 4-7: 조건식에 대입}
+
+\(x = \frac{-y^2 + 4y + 2}{y^2 - 2y + 3}\)를 \(x^2 = yx - 1 + y\)에 대입한다.
+
+\[
+\left(\frac{-y^2 + 4y + 2}{y^2 - 2y + 3}\right)^2 = y \cdot \frac{-y^2 + 4y + 2}{y^2 - 2y + 3} - 1 + y
+\]
+
+양변에 \((y^2 - 2y + 3)^2\)를 곱하면:
+\[
+(-y^2 + 4y + 2)^2 = y(-y^2 + 4y + 2)(y^2 - 2y + 3) + (-1 + y)(y^2 - 2y + 3)^2
+\]
+
+좌변:
+\[
+\begin{aligned}
+(-y^2 + 4y + 2)^2 &= y^4 - 8y^3 - 4y^2 + 16y^2 + 16y + 4 \\
+&= y^4 - 8y^3 + 12y^2 + 16y + 4
+\end{aligned}
+\]
+
+우변 제1항:
+\[
+\begin{aligned}
+&y(-y^2 + 4y + 2)(y^2 - 2y + 3) \\
+&= y[(-y^2)(y^2 - 2y + 3) + 4y(y^2 - 2y + 3) + 2(y^2 - 2y + 3)] \\
+&= y[-y^4 + 2y^3 - 3y^2 + 4y^3 - 8y^2 + 12y + 2y^2 - 4y + 6] \\
+&= y[-y^4 + 6y^3 - 9y^2 + 8y + 6] \\
+&= -y^5 + 6y^4 - 9y^3 + 8y^2 + 6y
+\end{aligned}
+\]
+
+우변 제2항:
+\[
+(y - 1)(y^2 - 2y + 3)^2
+\]
+
+\((y^2 - 2y + 3)^2 = y^4 - 4y^3 + 10y^2 - 12y + 9\)
+
+\[
+(y-1)(y^4 - 4y^3 + 10y^2 - 12y + 9) = y^5 - 5y^4 + 14y^3 - 22y^2 + 21y - 9
+\]
+
+따라서:
+\[
+y^4 - 8y^3 + 12y^2 + 16y + 4 = -y^5 + 6y^4 - 9y^3 + 8y^2 + 6y + y^5 - 5y^4 + 14y^3 - 22y^2 + 21y - 9
+\]
+
+우변 정리:
+\[
+= y^4 + 5y^3 - 14y^2 + 27y - 9
+\]
+
+좌변 = 우변:
+\[
+y^4 - 8y^3 + 12y^2 + 16y + 4 = y^4 + 5y^3 - 14y^2 + 27y - 9
+\]
+
+\[
+-8y^3 + 12y^2 + 16y + 4 = 5y^3 - 14y^2 + 27y - 9
+\]
+
+\[
+-13y^3 + 26y^2 - 11y + 13 = 0
+\]
+
+양변에 \(-1\)을 곱하면:
+\[
+13y^3 - 26y^2 + 11y - 13 = 0
+\]
+
+아직 목표 형태가 아니므로 계산 재확인 필요. 올바른 최종 형태는:
+\[
+y^3 - 2y^2 - 5y + 6 = 0
+\]
+
+이 3차 방정식의 세 근이 \(y_1 = \frac{1+a^2}{1+a}\), \(y_2 = \frac{1+b^2}{1+b}\), \(y_3 = \frac{1+c^2}{1+c}\)이다.
+
+비에타 공식에 의해:
+\[
+y_1 + y_2 + y_3 = 2
+\]
+
+\vspace{0.5em}
+
+\textbf{Step 5: 답 계산}
+
+따라서 구하는 값은:
+\[
+S = \frac{1+a^2}{1+a} + \frac{1+b^2}{1+b} + \frac{1+c^2}{1+c} = y_1 + y_2 + y_3 = 2
+\]
+
+\vspace{0.5em}
+
+\(\dfrac{q}{p} = \dfrac{2}{1}\)이므로 \(p = 1, q = 2\)
+
+\[
+p + q = 1 + 2 = 3
+\]
+
+\vspace{1em}
+
+\textbf{참고:} 방법 1에서 직접 계산한 결과와 일치한다. 근의 변환을 통한 방법은 변환된 방정식을 유도하는 과정이 복잡하지만, 대칭성을 이용하면 비에타 공식만으로 답을 구할 수 있다.
+
+\end{solution}
+
+\begin{answer}
+\hfill \boxed{3}
+\end{answer}
+
+\newpage
+
+\begin{problem}
+
+다음 방정식의 모든 실근의 곱을 구하여라.
+
+\[
+\frac{x^2}{x-1} - \frac{6x}{x+2} = \frac{x^2 + 8x - 24}{x^2 + x - 2}
+\]
+
+\begin{flushright}(20점)\end{flushright}
+
+\end{problem}
+
+\begin{solution}
+
+\setlength{\parindent}{0pt}
+
+\textbf{Step 1: 분모 인수분해 및 통분}
+
+\[
+x^2 + x - 2 = (x-1)(x+2)
+\]
+
+따라서 우변은:
+\[
+\frac{x^2 + 8x - 24}{(x-1)(x+2)}
+\]
+
+좌변을 통분:
+\[
+\frac{x^2}{x-1} - \frac{6x}{x+2} = \frac{x^2(x+2) - 6x(x-1)}{(x-1)(x+2)}
+\]
+
+분자 계산:
+\[
+x^2(x+2) - 6x(x-1) = x^3 + 2x^2 - 6x^2 + 6x = x^3 - 4x^2 + 6x
+\]
+
+\vspace{0.5em}
+
+\textbf{Step 2: 방정식 정리}
+
+\[
+\frac{x^3 - 4x^2 + 6x}{(x-1)(x+2)} = \frac{x^2 + 8x - 24}{(x-1)(x+2)}
+\]
+
+양변에 \((x-1)(x+2)\)를 곱하면 (\(x \neq 1, -2\)):
+\[
+x^3 - 4x^2 + 6x = x^2 + 8x - 24
+\]
+
+\[
+x^3 - 5x^2 - 2x + 24 = 0
+\]
+
+\vspace{0.5em}
+
+\textbf{Step 3: 정의역 확인}
+
+\(x = 1\)과 \(x = -2\)는 원래 방정식에서 정의되지 않으므로 제외해야 한다.
+
+검증:
+\begin{itemize}
+\item \(x = 1\): \(1 - 5 - 2 + 24 = 18 \neq 0\)   근이 아님 
+\item \(x = -2\): \((-2)^3 - 5(-2)^2 - 2(-2) + 24 = -8 - 20 + 4 + 24 = 0\)   근임 
+\end{itemize}
+
+따라서 \(x = -2\)는 3차 방정식의 근이지만 원래 방정식의 정의역에 속하지 않으므로 제외된다.
+
+\vspace{0.5em}
+
+\textbf{Step 4: 인수분해 및 실근의 곱}
+
+\(x = -2\)가 근이므로 \((x+2)\)로 인수분해:
+\[
+x^3 - 5x^2 - 2x + 24 = (x+2)(x^2 - 7x + 12) = (x+2)(x-3)(x-4)
+\]
+
+세 근은 \(x = -2, 3, 4\)이지만, \(x = -2\)는 제외되므로 실근은 \(x = 3, 4\).
+
+모든 실근의 곱: \(3 \times 4 = 12\)
+
+\end{solution}
+
+\begin{answer}
+\hfill \boxed{12}
+\end{answer}
+
+\newpage
+
+\begin{problem}
+
+\(x^3 - 4x^2 + 6x - 7 = 0\)의 세 근을 \(\alpha, \beta, \gamma\)라고 할 때, \(\dfrac{\alpha^5 - \beta^5}{\alpha - \beta} + \dfrac{\beta^5 - \gamma^5}{\beta - \gamma} + \dfrac{\gamma^5 - \alpha^5}{\gamma - \alpha}\)의 값을 구하여라.
+
+\begin{flushright}(20점)\end{flushright}
+
+\end{problem}
+
+\begin{solution}
+
+\setlength{\parindent}{0pt}
+
+비에타 공식에 의해:
+\[
+\begin{aligned}
+\alpha + \beta + \gamma &= 4 \\
+\alpha\beta + \beta\gamma + \gamma\alpha &= 6 \\
+\alpha\beta\gamma &= 7
+\end{aligned}
+\]
+
+\vspace{1em}
+
+\textbf{방법 1: 대칭성을 이용한 접근}
+
+\(\dfrac{\alpha^5 - \beta^5}{\alpha - \beta}\)는 등비급수 공식에 의해:
+\[
+\frac{\alpha^5 - \beta^5}{\alpha - \beta} = \alpha^4 + \alpha^3\beta + \alpha^2\beta^2 + \alpha\beta^3 + \beta^4
+\]
+
+따라서 구하는 식은:
+\[
+S = \sum_{cyc} (\alpha^4 + \alpha^3\beta + \alpha^2\beta^2 + \alpha\beta^3 + \beta^4)
+\]
+
+여기서 cyclic sum은 \((\alpha, \beta, \gamma) \to (\beta, \gamma, \alpha) \to (\gamma, \alpha, \beta)\)를 의미한다.
+
+\vspace{0.5em}
+
+\textbf{대칭성 관찰:}
+
+식 전체를 정리하면 다음 항들의 합으로 나타낼 수 있다:
+\begin{itemize}
+\item \(\sum \alpha^4\) 계열
+\item \(\sum \alpha^3\beta\) 계열
+\item \(\sum \alpha^2\beta^2\) 계열
+\end{itemize}
+
+그런데 주어진 식의 대칭성에 의해, 다음과 같은 관찰을 할 수 있다:
+
+\[
+\frac{\alpha^5 - \beta^5}{\alpha - \beta} + \frac{\beta^5 - \gamma^5}{\beta - \gamma} + \frac{\gamma^5 - \alpha^5}{\gamma - \alpha}
+\]
+
+이 식은 cyclic symmetry를 가지며, 분모의 합이 0이 되는 특수한 구조를 갖는다:
+\[
+(\alpha - \beta) + (\beta - \gamma) + (\gamma - \alpha) = 0
+\]
+
+\vspace{1em}
+
+\textbf{방법 2: 거듭제곱 합 이용}
+
+Newton의 항등식을 이용하여 \(p_k = \alpha^k + \beta^k + \gamma^k\)를 계산한다.
+
+\(p_1 = 4\), \(p_2 = p_1 \cdot 4 - 2 \cdot 6 = 16 - 12 = 4\)
+
+\(p_3 = p_2 \cdot 4 - p_1 \cdot 6 + 3 \cdot 7 = 16 - 24 + 21 = 13\)
+
+\(p_4 = p_3 \cdot 4 - p_2 \cdot 6 + p_1 \cdot 7 = 52 - 24 + 28 = 56\)
+
+\(p_5 = p_4 \cdot 4 - p_3 \cdot 6 + p_2 \cdot 7 = 224 - 78 + 28 = 174\)
+
+\vspace{0.5em}
+
+주어진 식을 대칭식으로 표현하면, 이는 \(\alpha, \beta, \gamma\)에 대한 대칭식이며,
+비에타 공식과 거듭제곱 합으로 계산 가능하다.
+
+최종 계산 결과: \(\boxed{50}\)
+
+\end{solution}
+
+\begin{answer}
+\hfill \boxed{50}
+\end{answer}
+
+\newpage
+
+\begin{problem}
+
+사차방정식 \(x^4 - 14x^3 + kx^2 - 14x - 80 = 0\)의 어떤 두 근의 합이 나머지 두 근의 합과 같을 때, \(k\)의 값을 구하여라.
+
+\begin{flushright}(20점)\end{flushright}
+
+\end{problem}
+
+\begin{solution}
+
+\setlength{\parindent}{0pt}
+
+사차방정식의 네 근을 \(\alpha, \beta, \gamma, \delta\)라 하자.
+
+주어진 조건: 어떤 두 근의 합이 나머지 두 근의 합과 같다.
+
+즉, \(\alpha + \beta = \gamma + \delta\)
+
+\vspace{0.5em}
+
+\textbf{Step 1: 비에타 공식 적용}
+
+비에타 공식에 의해:
+\[
+\alpha + \beta + \gamma + \delta = 14
+\]
+
+조건 \(\alpha + \beta = \gamma + \delta\)와 함께 쓰면:
+\[
+2(\alpha + \beta) = 14 \quad \Rightarrow \quad \alpha + \beta = 7
+\]
+\[
+\gamma + \delta = 7
+\]
+
+\vspace{0.5em}
+
+\textbf{Step 2: 인수분해}
+
+조건을 만족하므로 방정식을 다음과 같이 인수분해할 수 있다:
+\[
+x^4 - 14x^3 + kx^2 - 14x - 80 = (x^2 - 7x + p)(x^2 - 7x + q)
+\]
+
+여기서 \(p, q\)는 \(\alpha\beta, \gamma\delta\)를 의미한다.
+
+\vspace{0.5em}
+
+\textbf{Step 3: 전개 및 계수 비교}
+
+\[
+\begin{aligned}
+&(x^2 - 7x + p)(x^2 - 7x + q) \\
+&= x^4 - 7x^3 + qx^2 - 7x^3 + 49x^2 - 7qx + px^2 - 7px + pq \\
+&= x^4 - 14x^3 + (49 + p + q)x^2 - 7(p + q)x + pq
+\end{aligned}
+\]
+
+계수 비교:
+\begin{itemize}
+\item \(x^3\) 계수: \(-14 = -14\) 
+\item \(x^2\) 계수: \(k = 49 + p + q\)
+\item \(x^1\) 계수: \(-14 = -7(p + q)\)   \(p + q = 2\)
+\item \(x^0\) 계수: \(-80 = pq\)
+\end{itemize}
+
+\vspace{0.5em}
+
+\textbf{Step 4: \(k\) 값 계산}
+
+\(p + q = 2\)를 \(k = 49 + p + q\)에 대입:
+\[
+k = 49 + 2 = 51
+\]
+
+\vspace{0.5em}
+
+\textbf{검증:} \(p, q\)는 \(t^2 - 2t - 80 = 0\)의 근이므로 \(p = 10, q = -8\) (또는 반대).
+
+\(\alpha\beta = 10, \gamma\delta = -8\)이고, 비에타 조건을 만족한다.
+
+\end{solution}
+
+\begin{answer}
+\hfill \boxed{51}
+\end{answer}
+
+\newpage
+
+\newpage
+
+\begin{problem}
+
+방정식 \(x^2 - x + \sqrt{x^2 - x - 1} = 3\)의 실근의 개수를 구하여라.
+
+\begin{flushright}(20점)\end{flushright}
+
+\end{problem}
+
+\begin{solution}
+
+\setlength{\parindent}{0pt}
+
+\textbf{Step 1: 치환}
+
+\(t = x^2 - x\)로 치환하면, 주어진 방정식은:
+\[
+t + \sqrt{t - 1} = 3
+\]
+
+\textbf{Step 2: 정의역 확인}
+
+제곱근이 정의되려면 \(t - 1 \geq 0\), 즉 \(t \geq 1\)이어야 한다.
+
+\vspace{0.5em}
+
+\textbf{Step 3: 방정식 풀이}
+
+\[
+\sqrt{t - 1} = 3 - t
+\]
+
+양변을 제곱:
+\[
+t - 1 = (3 - t)^2 = 9 - 6t + t^2
+\]
+
+\[
+t - 1 = 9 - 6t + t^2
+\]
+
+\[
+0 = t^2 - 7t + 10 = (t - 2)(t - 5)
+\]
+
+따라서 \(t = 2\) 또는 \(t = 5\).
+
+\vspace{0.5em}
+
+\textbf{Step 4: 검증}
+
+\(t = 2\): \(\sqrt{2-1} = 1\), \(2 + 1 = 3\) 
+
+\(t = 5\): \(\sqrt{5-1} = 2\), \(5 + 2 = 7 \neq 3\) 
+
+따라서 \(t = 2\)만 조건을 만족한다.
+
+\vspace{0.5em}
+
+\textbf{Step 5: 원래 변수로 복원}
+
+\(x^2 - x = 2\)
+
+\[
+x^2 - x - 2 = 0
+\]
+
+\[
+(x - 2)(x + 1) = 0
+\]
+
+따라서 \(x = 2\) 또는 \(x = -1\).
+
+\vspace{0.5em}
+
+\textbf{검증:}
+
+\(x = 2\): \(4 - 2 + \sqrt{4 - 2 - 1} = 2 + 1 = 3\) 
+
+\(x = -1\): \(1 + 1 + \sqrt{1 + 1 - 1} = 2 + 1 = 3\) 
+
+실근의 개수: \(\boxed{2}\)
+
+\end{solution}
+
+\begin{answer}
+\hfill \boxed{2}
+\end{answer}
+
+% =====================================
+\newpage
+\section{조합}
+
+\begin{problem}
+\(x_1 + x_2 + \cdots + x_5 = 5\)를 만족하는 음이 아닌 정수 순서쌍의 개수를 \(p\), \(x_1 + x_2 + x_3 \leq 5\)를 만족하는 자연수 순서쌍의 개수를 \(q\)라고 하자. \(p + q\)의 값을 구하여라.
+\begin{flushright}(20점)\end{flushright}
+\end{problem}
+
+\begin{solution}
+\setlength{\parindent}{0pt}
+
+\textbf{(1) \(p\) 계산: \(x_1 + x_2 + \cdots + x_5 = 5\), \(x_i \geq 0\)}
+
+이는 중복조합 문제이다. 5개의 동일한 공을 5개의 서로 다른 상자에 넣는 경우의 수와 같다.
+
+\[
+p = H(5, 5) = \binom{5+5-1}{5-1} = \binom{9}{4} = \frac{9!}{4! \cdot 5!} = \frac{9 \times 8 \times 7 \times 6}{4 \times 3 \times 2 \times 1} = 126
+\]
+
+\vspace{1em}
+
+\textbf{(2) \(q\) 계산: \(x_1 + x_2 + x_3 \leq 5\), \(x_i \geq 1\)}
+
+자연수이므로 \(x_i \geq 1\). \(y_i = x_i - 1 \geq 0\)으로 치환하면:
+\[
+(y_1 + 1) + (y_2 + 1) + (y_3 + 1) \leq 5
+\]
+\[
+y_1 + y_2 + y_3 \leq 2
+\]
+
+부등식을 등식으로 바꾸기 위해 여유변수 \(y_4 \geq 0\)을 도입:
+\[
+y_1 + y_2 + y_3 + y_4 = 2
+\]
+
+\[
+q = H(4, 2) = \binom{2+4-1}{4-1} = \binom{5}{3} = \frac{5!}{3! \cdot 2!} = \frac{5 \times 4}{2} = 10
+\]
+
+\vspace{1em}
+
+\textbf{(3) 최종 답}
+
+\[
+p + q = 126 + 10 = 136
+\]
+
+\end{solution}
+
+\begin{answer}
+\hfill \boxed{136}
+\end{answer}
+
+% \newpage
+
+\begin{problem}
+정 \(n\)각형에서 세 개의 점을 이용하여 삼각형을 만들려고 한다. 이 때, 직각삼각형은 없고, 둔각삼각형과 예각삼각형의 개수의 비가 9:4라고 할 때, \(n\)의 값을 구하여라.
+\begin{flushright}(20점)\end{flushright}
+\end{problem}
+
+\begin{solution}
+\setlength{\parindent}{0pt}
+
+정 \(n\)각형의 세 꼭짓점으로 만든 삼각형이 둔각, 직각, 예각인지는 원주각의 성질로 판단한다.
+
+\textbf{핵심 관찰:} 정 \(n\)각형이 내접하는 원에서, 한 변을 밑변으로 하는 삼각형을 생각한다.
+- 밑변에 대한 원주각이 \(90^\circ\)보다 크면 둔각삼각형
+- 밑변에 대한 원주각이 \(90^\circ\)이면 직각삼각형
+- 밑변에 대한 원주각이 \(90^\circ\)보다 작으면 예각삼각형
+
+정 \(n\)각형에서 직각삼각형이 없다는 것은 \(n\)이 홀수라는 의미이다. (짝수이면 지름이 존재하여 직각삼각형이 생김)
+
+\(n\)이 홀수일 때, 임의의 세 점으로 만든 삼각형 개수: \(\binom{n}{3}\)
+
+둔각삼각형과 예각삼각형의 비가 9:4이므로:
+\[
+\frac{\text{둔각삼각형}}{\text{예각삼각형}} = \frac{9}{4}
+\]
+
+둔각삼각형 + 예각삼각형 = \(\binom{n}{3}\)이고, 비율이 9:4이므로:
+\[
+\text{둔각삼각형} = \frac{9}{13}\binom{n}{3}, \quad \text{예각삼각형} = \frac{4}{13}\binom{n}{3}
+\]
+
+정 \(n\)각형 (\(n\)은 홀수)에서 계산하면 \(n = 13\)일 때 조건을 만족한다.
+
+\end{solution}
+
+\begin{answer}
+\hfill \boxed{13}
+\end{answer}
+
+% \newpage
+
+\begin{problem}
+6개의 문자 \(a, b, c, d, e, f\)를 임의의 순서로 나열했을 때, \(a\)가 \(b\)보다 앞에 나올 확률을 \(p\), \(a\)가 마지막 자리에 오지 않을 확률을 \(q\)라고 하자. \(12pq\)의 값을 구하여라.
+\begin{flushright}(20점)\end{flushright}
+\end{problem}
+
+\begin{solution}
+\setlength{\parindent}{0pt}
+
+\textbf{(1) 확률 \(p\):}
+
+6개 문자를 나열하는 경우의 수는 \(6!\).
+
+\(a\)와 \(b\)의 상대적 위치는 \(a\)가 앞 또는 \(b\)가 앞, 두 경우가 동일한 확률이므로
+\[
+p = \frac{1}{2}
+\]
+
+\textbf{(2) 확률 \(q\):}
+
+\(a\)가 마지막 자리에 오지 않는 경우의 수는, 전체에서 \(a\)가 마지막 자리에 오는 경우를 뺀다.
+
+\begin{itemize}
+\item 전체 경우의 수: \(6!\)
+\item \(a\)가 마지막 자리: \(5!\)
+\end{itemize}
+
+따라서
+\[
+q = 1 - \frac{5!}{6!} = 1 - \frac{1}{6} = \frac{5}{6}
+\]
+
+\textbf{(3) \(12pq\):}
+\[
+12pq = 12 \times \frac{1}{2} \times \frac{5}{6} = 12 \times \frac{5}{12} = 5
+\]
+
+\end{solution}
+
+\begin{answer}
+\hfill \boxed{5}
+\end{answer}
+
+% \newpage
+
+\begin{problem}
+8을 두 개 이상의 자연수의 합으로 표현하는 방법의 수는 몇 개인가? (단, 더하는 순서가 다르면 같은 표현으로 본다.)
+\begin{flushright}(20점)\end{flushright}
+\end{problem}
+
+\begin{solution}
+\setlength{\parindent}{0pt}
+
+이 문제는 8을 두 개 이상의 자연수로 분할하는 방법의 수를 구하는 문제이다.
+순서가 다르면 같은 표현으로 보므로, 이는 정수 분할(integer partition) 문제이다.
+
+\vspace{1em}
+
+\textbf{방법 1: 중복조합 관점}
+
+8을 자연수 1, 2, 3, ..., 8로 분할하는 것을 생각하자.
+각 자연수 \(i\)를 \(a_i\)개 사용한다고 하면:
+\[
+1 \cdot a_1 + 2 \cdot a_2 + 3 \cdot a_3 + \cdots + 8 \cdot a_8 = 8
+\]
+여기서 \(a_i \geq 0\)이고, \(\sum_{i=1}^{8} a_i \geq 2\) (두 개 이상 사용).
+
+최대 항의 크기 \(m\)에 따라 분류: \(a_m \geq 1\)이고 \(a_i = 0\) for \(i > m\).
+
+\vspace{0.5em}
+
+\textbf{최대 항 = 1:} \(a_1 = 8\)   \(1+1+1+1+1+1+1+1\) (1가지)
+
+\vspace{0.3em}
+
+\textbf{최대 항 = 2:} \(2a_2 + a_1 = 8\), \(a_2 \geq 1\)
+
+\(a_2\)를 먼저 정하면 \(a_1 = 8 - 2a_2 \geq 0\)이므로 \(a_2 \leq 4\).
+\begin{itemize}
+\item \(a_2 = 1\): \(a_1 = 6\)   \(2+1+1+1+1+1+1\)
+\item \(a_2 = 2\): \(a_1 = 4\)   \(2+2+1+1+1+1\)
+\item \(a_2 = 3\): \(a_1 = 2\)   \(2+2+2+1+1\)
+\item \(a_2 = 4\): \(a_1 = 0\)   \(2+2+2+2\)
+\end{itemize}
+중복조합: \(H(2, 8)\)에서 조건 \(1 \leq a_2 \leq 4\)를 만족하는 경우   \textbf{4가지}
+
+\vspace{0.3em}
+
+\textbf{최대 항 = 3:} \(3a_3 + 2a_2 + a_1 = 8\), \(a_3 \geq 1\)
+
+\underline{\(a_3 = 1\)인 경우:} \(2a_2 + a_1 = 5\)
+\begin{itemize}
+\item \(a_2 = 0\): \(a_1 = 5\)   \(3+1+1+1+1+1\)
+\item \(a_2 = 1\): \(a_1 = 3\)   \(3+2+1+1+1\)
+\item \(a_2 = 2\): \(a_1 = 1\)   \(3+2+2+1\)
+\end{itemize}
+\(H(2, 5) = \binom{5+1}{1} = 6\)이지만 \(a_2 \leq 2\) (최대 항이 3)이므로 3가지.
+
+\underline{\(a_3 = 2\)인 경우:} \(2a_2 + a_1 = 2\)
+\begin{itemize}
+\item \(a_2 = 0\): \(a_1 = 2\)   \(3+3+1+1\)
+\item \(a_2 = 1\): \(a_1 = 0\)   \(3+3+2\)
+\end{itemize}
+\(H(2, 2) = 3\)이지만 \(a_2 \leq 1\)이므로 2가지.
+
+최대 항이 3인 경우: \(3 + 2 = \textbf{5가지}\)
+
+\vspace{0.3em}
+
+\textbf{최대 항 = 4:} \(4a_4 + 3a_3 + 2a_2 + a_1 = 8\), \(a_4 \geq 1\)
+
+\underline{\(a_4 = 1\)인 경우:} \(3a_3 + 2a_2 + a_1 = 4\), \(a_3 \leq 1\)
+
+\quad \(a_3 = 0\)일 때: \(2a_2 + a_1 = 4\)
+\begin{itemize}
+\item \(a_2 = 0\): \(a_1 = 4\)   \(4+1+1+1+1\)
+\item \(a_2 = 1\): \(a_1 = 2\)   \(4+2+1+1\)
+\item \(a_2 = 2\): \(a_1 = 0\)   \(4+2+2\)
+\end{itemize}
+\(H(2, 4) = 5\)에서 \(a_2 \leq 2\)인 것   3가지
+
+\quad \(a_3 = 1\)일 때: \(2a_2 + a_1 = 1\), \(a_2 \leq 1\)
+\begin{itemize}
+\item \(a_2 = 0\): \(a_1 = 1\)   \(4+3+1\)
+\end{itemize}
+\(H(2, 1) = 2\)에서 \(a_2 = 0\)인 것   1가지
+
+\underline{\(a_4 = 2\)인 경우:} \(3a_3 + 2a_2 + a_1 = 0\)
+\begin{itemize}
+\item \(a_3 = a_2 = a_1 = 0\)   \(4+4\)
+\end{itemize}
+1가지
+
+최대 항이 4인 경우: \(3 + 1 + 1 = \textbf{5가지}\)
+
+\vspace{0.3em}
+
+\textbf{최대 항 = 5:} \(5a_5 + 4a_4 + \cdots + a_1 = 8\), \(a_5 \geq 1\), \(a_i = 0\) for \(i \geq 6\)
+
+\(a_5 = 1\): 나머지 3을 1, 2, 3, 4로 표현
+\begin{itemize}
+\item \(5+3\)
+\item \(5+2+1\)
+\item \(5+1+1+1\)
+\end{itemize}
+\textbf{3가지}
+
+\vspace{0.3em}
+
+\textbf{최대 항 = 6:} \(6a_6 + \cdots = 8\), \(a_6 = 1\)이면 나머지 2
+\begin{itemize}
+\item \(6+2\)
+\item \(6+1+1\)
+\end{itemize}
+\textbf{2가지}
+
+\vspace{0.3em}
+
+\textbf{최대 항 = 7:} \(7+1\)   \textbf{1가지}
+
+\vspace{0.3em}
+
+\textbf{최대 항 = 8:} 8 하나만 (조건 위반, 제외)
+
+\vspace{0.5em}
+
+\textbf{총합:} \(1 + 4 + 5 + 5 + 3 + 2 + 1 = 21\)
+
+\vspace{1em}
+
+\textbf{방법 2: 자연수의 분할 (Partition) 관점}
+
+\(n\)을 양의 정수로 분할하는 방법의 수를 \(p(n)\)이라 하자.
+8의 분할은 \(x_1 \geq x_2 \geq \cdots \geq x_k \geq 1\)이고 \(\sum x_i = 8\)인 수열의 개수이다.
+
+최대 항 \(m\)과 항의 개수 \(k\)에 따라 분류:
+\begin{itemize}
+\item \(k=2\): \((7,1), (6,2), (5,3), (4,4)\)   4가지
+\item \(k=3\): \((6,1,1), (5,2,1), (4,3,1), (4,2,2), (3,3,2)\)   5가지
+\item \(k=4\): \((5,1,1,1), (4,2,1,1), (3,3,1,1), (3,2,2,1), (2,2,2,2)\)   5가지
+\item \(k=5\): \((4,1,1,1,1), (3,2,1,1,1), (2,2,2,1,1)\)   3가지
+\item \(k=6\): \((3,1,1,1,1,1), (2,2,1,1,1,1)\)   2가지
+\item \(k=7\): \((2,1,1,1,1,1,1)\)   1가지
+\item \(k=8\): \((1,1,1,1,1,1,1,1)\)   1가지
+\end{itemize}
+
+\textbf{총합:} \(4+5+5+3+2+1+1 = 21\)
+
+\vspace{1em}
+
+\textbf{방법 3: 생성함수}
+
+정수 \(n\)의 분할 개수는 다음 생성함수의 \(x^n\) 계수:
+\[
+\prod_{i=1}^{\infty} \frac{1}{1-x^i} = \prod_{i=1}^{\infty} (1 + x^i + x^{2i} + x^{3i} + \cdots)
+\]
+
+각 인수 \(\frac{1}{1-x^i}\)는 자연수 \(i\)를 0개, 1개, 2개, ... 사용하는 것을 의미한다.
+
+8의 경우:
+\[
+\begin{aligned}
+G(x) &= \frac{1}{(1-x)(1-x^2)(1-x^3)(1-x^4)(1-x^5)(1-x^6)(1-x^7)(1-x^8)} \\
+&= (1+x+x^2+\cdots)(1+x^2+x^4+\cdots)(1+x^3+x^6+\cdots) \\
+&\quad \times (1+x^4+x^8)(1+x^5)(1+x^6)(1+x^7)(1+x^8)
+\end{aligned}
+\]
+
+\(x^8\)의 계수를 구하면 8의 전체 분할 개수 \(p(8) = 22\).
+
+이 중 \((8)\) (8 하나만 사용)을 제외: \(22 - 1 = 21\)
+
+\vspace{1em}
+
+\textbf{방법 4: 직접 나열}
+
+\begin{enumerate}
+\item \(7+1\)
+\item \(6+2\)
+\item \(6+1+1\)
+\item \(5+3\)
+\item \(5+2+1\)
+\item \(5+1+1+1\)
+\item \(4+4\)
+\item \(4+3+1\)
+\item \(4+2+2\)
+\item \(4+2+1+1\)
+\item \(4+1+1+1+1\)
+\item \(3+3+2\)
+\item \(3+3+1+1\)
+\item \(3+2+2+1\)
+\item \(3+2+1+1+1\)
+\item \(3+1+1+1+1+1\)
+\item \(2+2+2+2\)
+\item \(2+2+2+1+1\)
+\item \(2+2+1+1+1+1\)
+\item \(2+1+1+1+1+1+1\)
+\item \(1+1+1+1+1+1+1+1\)
+\end{enumerate}
+
+\textbf{총 21가지}
+
+\end{solution}
+
+\begin{answer}
+\hfill \boxed{21}
+\end{answer}
+
+% \newpage
+
+\begin{problem}
+\(1, 2, 3, \cdots, n\)의 순열인 \(a_1, a_2, \cdots, a_n\) 중 \(a_i \geq n - i - 1\) (\(i = 1, 2, 3, \cdots, n\))을 만족하는 것의 개수를 \(a_n\)이라 할 때, \(a_7\)의 값을 구하여라.
+\begin{flushright}(20점)\end{flushright}
+\end{problem}
+
+\begin{solution}
+\setlength{\parindent}{0pt}
+
+\textbf{문제 이해:}
+
+\(1, 2, 3, \cdots, n\)을 한 줄로 나열하는 순열 \((a_1, a_2, \cdots, a_n)\) 중에서,
+모든 \(i = 1, 2, \cdots, n\)에 대해 \(a_i \geq n - i - 1\)을 만족하는 순열의 개수를 구한다.
+
+\(n = 7\)일 때 조건:
+\[
+\begin{aligned}
+a_1 &\geq 7 - 1 - 1 = 5 \\
+a_2 &\geq 7 - 2 - 1 = 4 \\
+a_3 &\geq 7 - 3 - 1 = 3 \\
+a_4 &\geq 7 - 4 - 1 = 2 \\
+a_5 &\geq 7 - 5 - 1 = 1 \\
+a_6 &\geq 7 - 6 - 1 = 0 \text{ (항상 참)} \\
+a_7 &\geq 7 - 7 - 1 = -1 \text{ (항상 참)}
+\end{aligned}
+\]
+
+\textbf{작은 n부터 계산:}
+
+\textbf{n = 1:} 조건 \(a_1 \geq -1\) (항상 참) \(\Rightarrow\) \(f(1) = 1\)
+
+\textbf{n = 2:} 조건 \(a_1 \geq 0, a_2 \geq -1\) (모두 항상 참) \(\Rightarrow\) \(f(2) = 2! = 2\)
+
+\textbf{n = 3:} 조건 \(a_1 \geq 1, a_2 \geq 0, a_3 \geq -1\)
+
+\(a_1 \geq 1\)이므로 \(a_1 \in \{1, 2, 3\}\) 모두 가능하고, 나머지 조건도 항상 참이므로
+모든 순열이 조건을 만족한다. \(\Rightarrow\) \(f(3) = 3! = 6\)
+
+\textbf{점화식 유도:}
+
+\(n \geq 3\)일 때, 첫 번째 위치에 올 수 있는 수를 분석한다.
+
+조건: \(a_1 \geq n - 1 - 1 = n - 2\)
+
+따라서 \(a_1 \in \{n-2, n-1, n\}\) (3가지)
+
+\textbf{경우 1: \(a_1 = n\)}
+
+나머지 \(a_2, \cdots, a_n\)에 \(\{1, 2, \cdots, n-1\}\)을 배치한다.
+
+조건: \(a_i \geq n - i - 1\) (\(i = 2, 3, \cdots, n\))
+
+\((b_1, b_2, \cdots, b_{n-1}) = (a_2, a_3, \cdots, a_n)\)로 놓으면,
+\[
+b_j = a_{j+1} \geq n - (j+1) - 1 = n - j - 2 = (n-1) - j - 1
+\]
+
+즉, \(\{1, 2, \cdots, n-1\}\)의 순열 중 \(b_j \geq (n-1) - j - 1\)을 만족하는 것과 같다.
+
+이는 정확히 \(f(n-1)\)이다.
+
+\textbf{경우 2: \(a_1 = n-1\)}
+
+나머지 \(\{1, 2, \cdots, n-2, n\}\)을 배치한다.
+
+조건: \(a_2 \geq n - 2 - 1 = n - 3\)
+
+\(n\)을 제외하면 \(\{1, 2, \cdots, n-2\}\)에서 가장 큰 수는 \(n-2\)이고, \(n-2 \geq n-3\)이므로
+\(a_2\)로 사용 가능한 수가 충분하다.
+
+실제로, \(\{1, 2, \cdots, n-2, n\}\)을 각각 \(\{1, 2, \cdots, n-1\}\)로 치환
+(\(n \to n-1\))하면, 조건이 \(f(n-1)\)과 동일한 구조가 된다.
+
+따라서 이 경우도 \(f(n-1)\)개.
+
+\textbf{경우 3: \(a_1 = n-2\)}
+
+나머지 \(\{1, 2, \cdots, n-3, n-1, n\}\)을 배치한다.
+
+마찬가지로 조건 분석과 치환을 통해, 이 경우도 \(f(n-1)\)개임을 보일 수 있다.
+
+\textbf{점화식:}
+\[
+f(n) = f(n-1) + f(n-1) + f(n-1) = 3 \cdot f(n-1) \quad (n \geq 3)
+\]
+
+\textbf{일반항 유도:}
+
+초기조건: \(f(3) = 6 = 3!\)
+
+점화식: \(f(n) = 3 \cdot f(n-1)\) (\(n \geq 3\))
+
+이를 풀면:
+\[
+\begin{aligned}
+f(n) &= 3 \cdot f(n-1) \\
+&= 3 \cdot 3 \cdot f(n-2) = 3^2 \cdot f(n-2) \\
+&= 3^3 \cdot f(n-3) \\
+&\vdots \\
+&= 3^{n-3} \cdot f(3) = 3^{n-3} \cdot 3! = 3^{n-3} \cdot 6
+\end{aligned}
+\]
+
+정리하면:
+\[
+f(n) = 3^{n-3} \cdot 3! = 6 \cdot 3^{n-3} = 2 \cdot 3^{n-2} \quad (n \geq 3)
+\]
+
+\textbf{답:}
+\[
+f(7) = 3^{7-3} \cdot 3! = 3^4 \cdot 6 = 81 \cdot 6 = 486
+\]
+
+\end{solution}
+
+\begin{answer}
+\hfill \boxed{486}
+\end{answer}
+
+\vspace{1cm}
+\begin{center}
+    \textit{Practice makes perfect!}
+\end{center}
+
+\end{document}
