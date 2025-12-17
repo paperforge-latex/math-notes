@@ -584,517 +584,517 @@ a + b = 3
 \hfill \boxed{3}
 \end{answer}
 
-% =====================================
-% \newpage
-% \section{조합}
+=====================================
+\newpage
+\section{조합}
 
-% \begin{problem}
-% \(0, 1, 2, 3, 4, 5\)를 중복을 허락하여 이용하여 만들 수 있는 모든 세 자리수의 합을 구하여라.
-% \begin{flushright}(20점)\end{flushright}
-% \end{problem}
+\begin{problem}
+\(0, 1, 2, 3, 4, 5\)를 중복을 허락하여 이용하여 만들 수 있는 모든 세 자리수의 합을 구하여라.
+\begin{flushright}(20점)\end{flushright}
+\end{problem}
 
-% \begin{solution}
-% \setlength{\parindent}{0pt}
+\begin{solution}
+\setlength{\parindent}{0pt}
 
-% 세 자리수는 백의 자리가 0이 아니어야 하므로, 백의 자리는 \(1, 2, 3, 4, 5\) 중 선택 (5가지), 십의 자리와 일의 자리는 각각 \(0, 1, 2, 3, 4, 5\) 중 선택 (각 6가지).
+세 자리수는 백의 자리가 0이 아니어야 하므로, 백의 자리는 \(1, 2, 3, 4, 5\) 중 선택 (5가지), 십의 자리와 일의 자리는 각각 \(0, 1, 2, 3, 4, 5\) 중 선택 (각 6가지).
 
-% 총 세 자리수의 개수는 \(5 \times 6 \times 6 = 180\)개.
+총 세 자리수의 개수는 \(5 \times 6 \times 6 = 180\)개.
 
-% \textbf{백의 자리 합:}
+\textbf{백의 자리 합:}
 
-% 백의 자리에 각 숫자가 나타나는 횟수는 \(6 \times 6 = 36\)번.
+백의 자리에 각 숫자가 나타나는 횟수는 \(6 \times 6 = 36\)번.
 
-% 백의 자리 숫자들의 합:
-% \[
-% (1 + 2 + 3 + 4 + 5) \times 36 \times 100 = 15 \times 36 \times 100 = 54000
-% \]
+백의 자리 숫자들의 합:
+\[
+(1 + 2 + 3 + 4 + 5) \times 36 \times 100 = 15 \times 36 \times 100 = 54000
+\]
 
-% \textbf{십의 자리 합:}
+\textbf{십의 자리 합:}
 
-% 십의 자리에 각 숫자가 나타나는 횟수는 \(5 \times 6 = 30\)번.
+십의 자리에 각 숫자가 나타나는 횟수는 \(5 \times 6 = 30\)번.
 
-% 십의 자리 숫자들의 합:
-% \[
-% (0 + 1 + 2 + 3 + 4 + 5) \times 30 \times 10 = 15 \times 30 \times 10 = 4500
-% \]
+십의 자리 숫자들의 합:
+\[
+(0 + 1 + 2 + 3 + 4 + 5) \times 30 \times 10 = 15 \times 30 \times 10 = 4500
+\]
 
-% \textbf{일의 자리 합:}
+\textbf{일의 자리 합:}
 
-% 일의 자리에 각 숫자가 나타나는 횟수는 \(5 \times 6 = 30\)번.
+일의 자리에 각 숫자가 나타나는 횟수는 \(5 \times 6 = 30\)번.
 
-% 일의 자리 숫자들의 합:
-% \[
-% (0 + 1 + 2 + 3 + 4 + 5) \times 30 \times 1 = 15 \times 30 = 450
-% \]
+일의 자리 숫자들의 합:
+\[
+(0 + 1 + 2 + 3 + 4 + 5) \times 30 \times 1 = 15 \times 30 = 450
+\]
 
-% \textbf{총합:}
-% \[
-% 54000 + 4500 + 450 = 58950
-% \]
+\textbf{총합:}
+\[
+54000 + 4500 + 450 = 58950
+\]
 
-% \end{solution}
+\end{solution}
 
-% \begin{answer}
-% \hfill \boxed{58950}
-% \end{answer}
+\begin{answer}
+\hfill \boxed{58950}
+\end{answer}
 
-% \newpage
+\newpage
 
-% \begin{problem}
-% 3으로 나누어떨어지고 3을 자릿수로 포함하는 네 자리의 수의 개수를 구하시오.
-% \begin{flushright}(20점)\end{flushright}
-% \end{problem}
+\begin{problem}
+3으로 나누어떨어지고 3을 자릿수로 포함하는 네 자리의 수의 개수를 구하시오.
+\begin{flushright}(20점)\end{flushright}
+\end{problem}
 
-% \begin{solution}
-% \setlength{\parindent}{0pt}
+\begin{solution}
+\setlength{\parindent}{0pt}
 
-% \textbf{접근: 여사건 이용}
+\textbf{접근: 여사건 이용}
 
-% 3으로 나누어떨어지는 네 자리 수 전체에서, 3을 포함하지 않는 경우를 빼면 된다.
+3으로 나누어떨어지는 네 자리 수 전체에서, 3을 포함하지 않는 경우를 빼면 된다.
 
-% \textbf{Step 1: 3으로 나누어떨어지는 네 자리 수의 개수}
+\textbf{Step 1: 3으로 나누어떨어지는 네 자리 수의 개수}
 
-% 네 자리 수는 1000부터 9999까지이다. 이 중 3의 배수는 1002부터 9999까지이다.
+네 자리 수는 1000부터 9999까지이다. 이 중 3의 배수는 1002부터 9999까지이다.
 
-% 개수: \(\left\lfloor \frac{9999}{3} \right\rfloor - \left\lfloor \frac{999}{3} \right\rfloor = 3333 - 333 = 3000\)개
+개수: \(\left\lfloor \frac{9999}{3} \right\rfloor - \left\lfloor \frac{999}{3} \right\rfloor = 3333 - 333 = 3000\)개
 
-% \textbf{Step 2: 3을 포함하지 않고 3으로 나누어떨어지는 네 자리 수}
+\textbf{Step 2: 3을 포함하지 않고 3으로 나누어떨어지는 네 자리 수}
 
-% 사용 가능한 숫자: \(\{0, 1, 2, 4, 5, 6, 7, 8, 9\}\) (3 제외, 총 9개)
+사용 가능한 숫자: \(\{0, 1, 2, 4, 5, 6, 7, 8, 9\}\) (3 제외, 총 9개)
 
-% 네 자리 수 \(\overline{abcd}\)에서 \(a \neq 0\)이고, \(a + b + c + d \equiv 0 \pmod{3}\)이어야 한다.
+네 자리 수 \(\overline{abcd}\)에서 \(a \neq 0\)이고, \(a + b + c + d \equiv 0 \pmod{3}\)이어야 한다.
 
-% 숫자들을 \(\mod 3\)으로 분류:
-% \begin{itemize}
-% \item \(R_0 = \{0, 6, 9\}\): 나머지 0 (3개)
-% \item \(R_1 = \{1, 4, 7\}\): 나머지 1 (3개)
-% \item \(R_2 = \{2, 5, 8\}\): 나머지 2 (3개)
-% \end{itemize}
+숫자들을 \(\mod 3\)으로 분류:
+\begin{itemize}
+\item \(R_0 = \{0, 6, 9\}\): 나머지 0 (3개)
+\item \(R_1 = \{1, 4, 7\}\): 나머지 1 (3개)
+\item \(R_2 = \{2, 5, 8\}\): 나머지 2 (3개)
+\end{itemize}
 
-% 백의 자리는 0이 아니므로:
-% \begin{itemize}
-% \item \(R_0' = \{6, 9\}\): 2개
-% \item \(R_1' = \{1, 4, 7\}\): 3개
-% \item \(R_2' = \{2, 5, 8\}\): 3개
-% \end{itemize}
+백의 자리는 0이 아니므로:
+\begin{itemize}
+\item \(R_0' = \{6, 9\}\): 2개
+\item \(R_1' = \{1, 4, 7\}\): 3개
+\item \(R_2' = \{2, 5, 8\}\): 3개
+\end{itemize}
 
-% 네 자리 수 \(\overline{abcd}\)가 3의 배수가 되려면 \(a + b + c + d \equiv 0 \pmod{3}\).
+네 자리 수 \(\overline{abcd}\)가 3의 배수가 되려면 \(a + b + c + d \equiv 0 \pmod{3}\).
 
-% \textbf{경우 1: \(a \in R_0'\)} (2가지)
+\textbf{경우 1: \(a \in R_0'\)} (2가지)
 
-% \(b + c + d \equiv 0 \pmod{3}\)인 경우의 수를 구한다. 나머지 세 자리의 조합:
-% \begin{itemize}
-% \item \((0, 0, 0)\): \(3^3 = 27\)가지
-% \item \((1, 1, 1)\): \(3^3 = 27\)가지
-% \item \((2, 2, 2)\): \(3^3 = 27\)가지
-% \item \((0, 1, 2)\) 순열: \(3! \times 3^3 = 6 \times 27 = 162\)가지
-% \end{itemize}
-% 총: \(27 + 27 + 27 + 162 = 243 = 9^3/3 = 3^5/3^1 = 3^4 = 81\)...
+\(b + c + d \equiv 0 \pmod{3}\)인 경우의 수를 구한다. 나머지 세 자리의 조합:
+\begin{itemize}
+\item \((0, 0, 0)\): \(3^3 = 27\)가지
+\item \((1, 1, 1)\): \(3^3 = 27\)가지
+\item \((2, 2, 2)\): \(3^3 = 27\)가지
+\item \((0, 1, 2)\) 순열: \(3! \times 3^3 = 6 \times 27 = 162\)가지
+\end{itemize}
+총: \(27 + 27 + 27 + 162 = 243 = 9^3/3 = 3^5/3^1 = 3^4 = 81\)...
 
-% 더 간단하게: 세 개 자리 \(b, c, d\)를 각각 9개 중 선택하되, 합이 \(\equiv 0 \pmod{3}\)이어야 한다.
-% 생성함수 접근: \((x^0 + x^1 + x^2)^3\)에서 \(x^{3k}\) 계수를 구한다.
-% 각 자리는 \(R_0, R_1, R_2\) 중 하나 (각 3개)이므로, 총 \(9^3 = 729\)가지 중 나머지가 0인 경우는 \(9^3/3 = 243\)가지.
+더 간단하게: 세 개 자리 \(b, c, d\)를 각각 9개 중 선택하되, 합이 \(\equiv 0 \pmod{3}\)이어야 한다.
+생성함수 접근: \((x^0 + x^1 + x^2)^3\)에서 \(x^{3k}\) 계수를 구한다.
+각 자리는 \(R_0, R_1, R_2\) 중 하나 (각 3개)이므로, 총 \(9^3 = 729\)가지 중 나머지가 0인 경우는 \(9^3/3 = 243\)가지.
 
-% \textbf{경우 1 소계: } \(2 \times 243 = 486\)
+\textbf{경우 1 소계: } \(2 \times 243 = 486\)
 
-% \textbf{경우 2: \(a \in R_1'\)} (3가지)
+\textbf{경우 2: \(a \in R_1'\)} (3가지)
 
-% \(b + c + d \equiv 2 \pmod{3}\)이어야 한다. 역시 243가지.
+\(b + c + d \equiv 2 \pmod{3}\)이어야 한다. 역시 243가지.
 
-% \textbf{경우 2 소계: } \(3 \times 243 = 729\)
+\textbf{경우 2 소계: } \(3 \times 243 = 729\)
 
-% \textbf{경우 3: \(a \in R_2'\)} (3가지)
+\textbf{경우 3: \(a \in R_2'\)} (3가지)
 
-% \(b + c + d \equiv 1 \pmod{3}\)이어야 한다. 역시 243가지.
+\(b + c + d \equiv 1 \pmod{3}\)이어야 한다. 역시 243가지.
 
-% \textbf{경우 3 소계: } \(3 \times 243 = 729\)
+\textbf{경우 3 소계: } \(3 \times 243 = 729\)
 
-% \textbf{3을 포함하지 않는 경우 총합:} \(486 + 729 + 729 = 1944\)
+\textbf{3을 포함하지 않는 경우 총합:} \(486 + 729 + 729 = 1944\)
 
-% \textbf{Step 3: 최종 답}
+\textbf{Step 3: 최종 답}
 
-% \[
-% 3000 - 1944 = 1056
-% \]
+\[
+3000 - 1944 = 1056
+\]
 
-% \end{solution}
+\end{solution}
 
-% \begin{answer}
-% \hfill \boxed{1056}
-% \end{answer}
+\begin{answer}
+\hfill \boxed{1056}
+\end{answer}
 
-% \newpage
+\newpage
 
-% \begin{problem}
-% 6개의 문자 \(a, b, c, d, e, f\)를 임의의 순서로 나열했을 때, \(a\)가 \(b\)보다 앞에 나올 확률을 \(p\), \(a\)가 마지막 자리에 오지 않을 확률을 \(q\)라고 하자. \(12pq\)의 값을 구하여라.
-% \begin{flushright}(20점)\end{flushright}
-% \end{problem}
+\begin{problem}
+6개의 문자 \(a, b, c, d, e, f\)를 임의의 순서로 나열했을 때, \(a\)가 \(b\)보다 앞에 나올 확률을 \(p\), \(a\)가 마지막 자리에 오지 않을 확률을 \(q\)라고 하자. \(12pq\)의 값을 구하여라.
+\begin{flushright}(20점)\end{flushright}
+\end{problem}
 
-% \begin{solution}
-% \setlength{\parindent}{0pt}
+\begin{solution}
+\setlength{\parindent}{0pt}
 
-% \textbf{(1) 확률 \(p\):}
+\textbf{(1) 확률 \(p\):}
 
-% 6개 문자를 나열하는 경우의 수는 \(6!\).
+6개 문자를 나열하는 경우의 수는 \(6!\).
 
-% \(a\)와 \(b\)의 상대적 위치는 \(a\)가 앞 또는 \(b\)가 앞, 두 경우가 동일한 확률이므로
-% \[
-% p = \frac{1}{2}
-% \]
+\(a\)와 \(b\)의 상대적 위치는 \(a\)가 앞 또는 \(b\)가 앞, 두 경우가 동일한 확률이므로
+\[
+p = \frac{1}{2}
+\]
 
-% \textbf{(2) 확률 \(q\):}
+\textbf{(2) 확률 \(q\):}
 
-% \(a\)가 마지막 자리에 오지 않는 경우의 수는, 전체에서 \(a\)가 마지막 자리에 오는 경우를 뺀다.
+\(a\)가 마지막 자리에 오지 않는 경우의 수는, 전체에서 \(a\)가 마지막 자리에 오는 경우를 뺀다.
 
-% \begin{itemize}
-% \item 전체 경우의 수: \(6!\)
-% \item \(a\)가 마지막 자리: \(5!\)
-% \end{itemize}
+\begin{itemize}
+\item 전체 경우의 수: \(6!\)
+\item \(a\)가 마지막 자리: \(5!\)
+\end{itemize}
 
-% 따라서
-% \[
-% q = 1 - \frac{5!}{6!} = 1 - \frac{1}{6} = \frac{5}{6}
-% \]
+따라서
+\[
+q = 1 - \frac{5!}{6!} = 1 - \frac{1}{6} = \frac{5}{6}
+\]
 
-% \textbf{(3) \(12pq\):}
-% \[
-% 12pq = 12 \times \frac{1}{2} \times \frac{5}{6} = 12 \times \frac{5}{12} = 5
-% \]
+\textbf{(3) \(12pq\):}
+\[
+12pq = 12 \times \frac{1}{2} \times \frac{5}{6} = 12 \times \frac{5}{12} = 5
+\]
 
-% \end{solution}
+\end{solution}
 
-% \begin{answer}
-% \hfill \boxed{5}
-% \end{answer}
+\begin{answer}
+\hfill \boxed{5}
+\end{answer}
 
-% \newpage
+\newpage
 
-% \begin{problem}
-% 8을 두 개 이상의 자연수의 합으로 표현하는 방법의 수는 몇 개인가? (단, 더하는 순서가 다르면 같은 표현으로 본다.)
-% \begin{flushright}(20점)\end{flushright}
-% \end{problem}
+\begin{problem}
+8을 두 개 이상의 자연수의 합으로 표현하는 방법의 수는 몇 개인가? (단, 더하는 순서가 다르면 같은 표현으로 본다.)
+\begin{flushright}(20점)\end{flushright}
+\end{problem}
 
-% \begin{solution}
-% \setlength{\parindent}{0pt}
+\begin{solution}
+\setlength{\parindent}{0pt}
 
-% 이 문제는 8을 두 개 이상의 자연수로 분할하는 방법의 수를 구하는 문제이다.
-% 순서가 다르면 같은 표현으로 보므로, 이는 정수 분할(integer partition) 문제이다.
+이 문제는 8을 두 개 이상의 자연수로 분할하는 방법의 수를 구하는 문제이다.
+순서가 다르면 같은 표현으로 보므로, 이는 정수 분할(integer partition) 문제이다.
 
-% \vspace{1em}
+\vspace{1em}
 
-% \textbf{방법 1: 중복조합 관점}
+\textbf{방법 1: 중복조합 관점}
 
-% 8을 자연수 1, 2, 3, ..., 8로 분할하는 것을 생각하자.
-% 각 자연수 \(i\)를 \(a_i\)개 사용한다고 하면:
-% \[
-% 1 \cdot a_1 + 2 \cdot a_2 + 3 \cdot a_3 + \cdots + 8 \cdot a_8 = 8
-% \]
-% 여기서 \(a_i \geq 0\)이고, \(\sum_{i=1}^{8} a_i \geq 2\) (두 개 이상 사용).
+8을 자연수 1, 2, 3, ..., 8로 분할하는 것을 생각하자.
+각 자연수 \(i\)를 \(a_i\)개 사용한다고 하면:
+\[
+1 \cdot a_1 + 2 \cdot a_2 + 3 \cdot a_3 + \cdots + 8 \cdot a_8 = 8
+\]
+여기서 \(a_i \geq 0\)이고, \(\sum_{i=1}^{8} a_i \geq 2\) (두 개 이상 사용).
 
-% 최대 항의 크기 \(m\)에 따라 분류: \(a_m \geq 1\)이고 \(a_i = 0\) for \(i > m\).
+최대 항의 크기 \(m\)에 따라 분류: \(a_m \geq 1\)이고 \(a_i = 0\) for \(i > m\).
 
-% \vspace{0.5em}
+\vspace{0.5em}
 
-% \textbf{최대 항 = 1:} \(a_1 = 8\) → \(1+1+1+1+1+1+1+1\) (1가지)
+\textbf{최대 항 = 1:} \(a_1 = 8\) → \(1+1+1+1+1+1+1+1\) (1가지)
 
-% \vspace{0.3em}
+\vspace{0.3em}
 
-% \textbf{최대 항 = 2:} \(2a_2 + a_1 = 8\), \(a_2 \geq 1\)
+\textbf{최대 항 = 2:} \(2a_2 + a_1 = 8\), \(a_2 \geq 1\)
 
-% \(a_2\)를 먼저 정하면 \(a_1 = 8 - 2a_2 \geq 0\)이므로 \(a_2 \leq 4\).
-% \begin{itemize}
-% \item \(a_2 = 1\): \(a_1 = 6\) → \(2+1+1+1+1+1+1\)
-% \item \(a_2 = 2\): \(a_1 = 4\) → \(2+2+1+1+1+1\)
-% \item \(a_2 = 3\): \(a_1 = 2\) → \(2+2+2+1+1\)
-% \item \(a_2 = 4\): \(a_1 = 0\) → \(2+2+2+2\)
-% \end{itemize}
-% 중복조합: \(H(2, 8)\)에서 조건 \(1 \leq a_2 \leq 4\)를 만족하는 경우 → \textbf{4가지}
+\(a_2\)를 먼저 정하면 \(a_1 = 8 - 2a_2 \geq 0\)이므로 \(a_2 \leq 4\).
+\begin{itemize}
+\item \(a_2 = 1\): \(a_1 = 6\) → \(2+1+1+1+1+1+1\)
+\item \(a_2 = 2\): \(a_1 = 4\) → \(2+2+1+1+1+1\)
+\item \(a_2 = 3\): \(a_1 = 2\) → \(2+2+2+1+1\)
+\item \(a_2 = 4\): \(a_1 = 0\) → \(2+2+2+2\)
+\end{itemize}
+중복조합: \(H(2, 8)\)에서 조건 \(1 \leq a_2 \leq 4\)를 만족하는 경우 → \textbf{4가지}
 
-% \vspace{0.3em}
+\vspace{0.3em}
 
-% \textbf{최대 항 = 3:} \(3a_3 + 2a_2 + a_1 = 8\), \(a_3 \geq 1\)
+\textbf{최대 항 = 3:} \(3a_3 + 2a_2 + a_1 = 8\), \(a_3 \geq 1\)
 
-% \underline{\(a_3 = 1\)인 경우:} \(2a_2 + a_1 = 5\)
-% \begin{itemize}
-% \item \(a_2 = 0\): \(a_1 = 5\) → \(3+1+1+1+1+1\)
-% \item \(a_2 = 1\): \(a_1 = 3\) → \(3+2+1+1+1\)
-% \item \(a_2 = 2\): \(a_1 = 1\) → \(3+2+2+1\)
-% \end{itemize}
-% \(H(2, 5) = \binom{5+1}{1} = 6\)이지만 \(a_2 \leq 2\) (최대 항이 3)이므로 3가지.
+\underline{\(a_3 = 1\)인 경우:} \(2a_2 + a_1 = 5\)
+\begin{itemize}
+\item \(a_2 = 0\): \(a_1 = 5\) → \(3+1+1+1+1+1\)
+\item \(a_2 = 1\): \(a_1 = 3\) → \(3+2+1+1+1\)
+\item \(a_2 = 2\): \(a_1 = 1\) → \(3+2+2+1\)
+\end{itemize}
+\(H(2, 5) = \binom{5+1}{1} = 6\)이지만 \(a_2 \leq 2\) (최대 항이 3)이므로 3가지.
 
-% \underline{\(a_3 = 2\)인 경우:} \(2a_2 + a_1 = 2\)
-% \begin{itemize}
-% \item \(a_2 = 0\): \(a_1 = 2\) → \(3+3+1+1\)
-% \item \(a_2 = 1\): \(a_1 = 0\) → \(3+3+2\)
-% \end{itemize}
-% \(H(2, 2) = 3\)이지만 \(a_2 \leq 1\)이므로 2가지.
+\underline{\(a_3 = 2\)인 경우:} \(2a_2 + a_1 = 2\)
+\begin{itemize}
+\item \(a_2 = 0\): \(a_1 = 2\) → \(3+3+1+1\)
+\item \(a_2 = 1\): \(a_1 = 0\) → \(3+3+2\)
+\end{itemize}
+\(H(2, 2) = 3\)이지만 \(a_2 \leq 1\)이므로 2가지.
 
-% 최대 항이 3인 경우: \(3 + 2 = \textbf{5가지}\)
+최대 항이 3인 경우: \(3 + 2 = \textbf{5가지}\)
 
-% \vspace{0.3em}
+\vspace{0.3em}
 
-% \textbf{최대 항 = 4:} \(4a_4 + 3a_3 + 2a_2 + a_1 = 8\), \(a_4 \geq 1\)
+\textbf{최대 항 = 4:} \(4a_4 + 3a_3 + 2a_2 + a_1 = 8\), \(a_4 \geq 1\)
 
-% \underline{\(a_4 = 1\)인 경우:} \(3a_3 + 2a_2 + a_1 = 4\), \(a_3 \leq 1\)
+\underline{\(a_4 = 1\)인 경우:} \(3a_3 + 2a_2 + a_1 = 4\), \(a_3 \leq 1\)
 
-% \quad \(a_3 = 0\)일 때: \(2a_2 + a_1 = 4\)
-% \begin{itemize}
-% \item \(a_2 = 0\): \(a_1 = 4\) → \(4+1+1+1+1\)
-% \item \(a_2 = 1\): \(a_1 = 2\) → \(4+2+1+1\)
-% \item \(a_2 = 2\): \(a_1 = 0\) → \(4+2+2\)
-% \end{itemize}
-% \(H(2, 4) = 5\)에서 \(a_2 \leq 2\)인 것 → 3가지
+\quad \(a_3 = 0\)일 때: \(2a_2 + a_1 = 4\)
+\begin{itemize}
+\item \(a_2 = 0\): \(a_1 = 4\) → \(4+1+1+1+1\)
+\item \(a_2 = 1\): \(a_1 = 2\) → \(4+2+1+1\)
+\item \(a_2 = 2\): \(a_1 = 0\) → \(4+2+2\)
+\end{itemize}
+\(H(2, 4) = 5\)에서 \(a_2 \leq 2\)인 것 → 3가지
 
-% \quad \(a_3 = 1\)일 때: \(2a_2 + a_1 = 1\), \(a_2 \leq 1\)
-% \begin{itemize}
-% \item \(a_2 = 0\): \(a_1 = 1\) → \(4+3+1\)
-% \end{itemize}
-% \(H(2, 1) = 2\)에서 \(a_2 = 0\)인 것 → 1가지
+\quad \(a_3 = 1\)일 때: \(2a_2 + a_1 = 1\), \(a_2 \leq 1\)
+\begin{itemize}
+\item \(a_2 = 0\): \(a_1 = 1\) → \(4+3+1\)
+\end{itemize}
+\(H(2, 1) = 2\)에서 \(a_2 = 0\)인 것 → 1가지
 
-% \underline{\(a_4 = 2\)인 경우:} \(3a_3 + 2a_2 + a_1 = 0\)
-% \begin{itemize}
-% \item \(a_3 = a_2 = a_1 = 0\) → \(4+4\)
-% \end{itemize}
-% 1가지
+\underline{\(a_4 = 2\)인 경우:} \(3a_3 + 2a_2 + a_1 = 0\)
+\begin{itemize}
+\item \(a_3 = a_2 = a_1 = 0\) → \(4+4\)
+\end{itemize}
+1가지
 
-% 최대 항이 4인 경우: \(3 + 1 + 1 = \textbf{5가지}\)
+최대 항이 4인 경우: \(3 + 1 + 1 = \textbf{5가지}\)
 
-% \vspace{0.3em}
+\vspace{0.3em}
 
-% \textbf{최대 항 = 5:} \(5a_5 + 4a_4 + \cdots + a_1 = 8\), \(a_5 \geq 1\), \(a_i = 0\) for \(i \geq 6\)
+\textbf{최대 항 = 5:} \(5a_5 + 4a_4 + \cdots + a_1 = 8\), \(a_5 \geq 1\), \(a_i = 0\) for \(i \geq 6\)
 
-% \(a_5 = 1\): 나머지 3을 1, 2, 3, 4로 표현
-% \begin{itemize}
-% \item \(5+3\)
-% \item \(5+2+1\)
-% \item \(5+1+1+1\)
-% \end{itemize}
-% \textbf{3가지}
+\(a_5 = 1\): 나머지 3을 1, 2, 3, 4로 표현
+\begin{itemize}
+\item \(5+3\)
+\item \(5+2+1\)
+\item \(5+1+1+1\)
+\end{itemize}
+\textbf{3가지}
 
-% \vspace{0.3em}
+\vspace{0.3em}
 
-% \textbf{최대 항 = 6:} \(6a_6 + \cdots = 8\), \(a_6 = 1\)이면 나머지 2
-% \begin{itemize}
-% \item \(6+2\)
-% \item \(6+1+1\)
-% \end{itemize}
-% \textbf{2가지}
+\textbf{최대 항 = 6:} \(6a_6 + \cdots = 8\), \(a_6 = 1\)이면 나머지 2
+\begin{itemize}
+\item \(6+2\)
+\item \(6+1+1\)
+\end{itemize}
+\textbf{2가지}
 
-% \vspace{0.3em}
+\vspace{0.3em}
 
-% \textbf{최대 항 = 7:} \(7+1\) → \textbf{1가지}
+\textbf{최대 항 = 7:} \(7+1\) → \textbf{1가지}
 
-% \vspace{0.3em}
+\vspace{0.3em}
 
-% \textbf{최대 항 = 8:} 8 하나만 (조건 위반, 제외)
+\textbf{최대 항 = 8:} 8 하나만 (조건 위반, 제외)
 
-% \vspace{0.5em}
+\vspace{0.5em}
 
-% \textbf{총합:} \(1 + 4 + 5 + 5 + 3 + 2 + 1 = 21\)
+\textbf{총합:} \(1 + 4 + 5 + 5 + 3 + 2 + 1 = 21\)
 
-% \vspace{1em}
+\vspace{1em}
 
-% \textbf{방법 2: 자연수의 분할 (Partition) 관점}
+\textbf{방법 2: 자연수의 분할 (Partition) 관점}
 
-% \(n\)을 양의 정수로 분할하는 방법의 수를 \(p(n)\)이라 하자.
-% 8의 분할은 \(x_1 \geq x_2 \geq \cdots \geq x_k \geq 1\)이고 \(\sum x_i = 8\)인 수열의 개수이다.
+\(n\)을 양의 정수로 분할하는 방법의 수를 \(p(n)\)이라 하자.
+8의 분할은 \(x_1 \geq x_2 \geq \cdots \geq x_k \geq 1\)이고 \(\sum x_i = 8\)인 수열의 개수이다.
 
-% 최대 항 \(m\)과 항의 개수 \(k\)에 따라 분류:
-% \begin{itemize}
-% \item \(k=2\): \((7,1), (6,2), (5,3), (4,4)\) → 4가지
-% \item \(k=3\): \((6,1,1), (5,2,1), (4,3,1), (4,2,2), (3,3,2)\) → 5가지
-% \item \(k=4\): \((5,1,1,1), (4,2,1,1), (3,3,1,1), (3,2,2,1), (2,2,2,2)\) → 5가지
-% \item \(k=5\): \((4,1,1,1,1), (3,2,1,1,1), (2,2,2,1,1)\) → 3가지
-% \item \(k=6\): \((3,1,1,1,1,1), (2,2,1,1,1,1)\) → 2가지
-% \item \(k=7\): \((2,1,1,1,1,1,1)\) → 1가지
-% \item \(k=8\): \((1,1,1,1,1,1,1,1)\) → 1가지
-% \end{itemize}
+최대 항 \(m\)과 항의 개수 \(k\)에 따라 분류:
+\begin{itemize}
+\item \(k=2\): \((7,1), (6,2), (5,3), (4,4)\) → 4가지
+\item \(k=3\): \((6,1,1), (5,2,1), (4,3,1), (4,2,2), (3,3,2)\) → 5가지
+\item \(k=4\): \((5,1,1,1), (4,2,1,1), (3,3,1,1), (3,2,2,1), (2,2,2,2)\) → 5가지
+\item \(k=5\): \((4,1,1,1,1), (3,2,1,1,1), (2,2,2,1,1)\) → 3가지
+\item \(k=6\): \((3,1,1,1,1,1), (2,2,1,1,1,1)\) → 2가지
+\item \(k=7\): \((2,1,1,1,1,1,1)\) → 1가지
+\item \(k=8\): \((1,1,1,1,1,1,1,1)\) → 1가지
+\end{itemize}
 
-% \textbf{총합:} \(4+5+5+3+2+1+1 = 21\)
+\textbf{총합:} \(4+5+5+3+2+1+1 = 21\)
 
-% \vspace{1em}
+\vspace{1em}
 
-% \textbf{방법 3: 생성함수}
+\textbf{방법 3: 생성함수}
 
-% 정수 \(n\)의 분할 개수는 다음 생성함수의 \(x^n\) 계수:
-% \[
-% \prod_{i=1}^{\infty} \frac{1}{1-x^i} = \prod_{i=1}^{\infty} (1 + x^i + x^{2i} + x^{3i} + \cdots)
-% \]
+정수 \(n\)의 분할 개수는 다음 생성함수의 \(x^n\) 계수:
+\[
+\prod_{i=1}^{\infty} \frac{1}{1-x^i} = \prod_{i=1}^{\infty} (1 + x^i + x^{2i} + x^{3i} + \cdots)
+\]
 
-% 각 인수 \(\frac{1}{1-x^i}\)는 자연수 \(i\)를 0개, 1개, 2개, ... 사용하는 것을 의미한다.
+각 인수 \(\frac{1}{1-x^i}\)는 자연수 \(i\)를 0개, 1개, 2개, ... 사용하는 것을 의미한다.
 
-% 8의 경우:
-% \[
-% \begin{aligned}
-% G(x) &= \frac{1}{(1-x)(1-x^2)(1-x^3)(1-x^4)(1-x^5)(1-x^6)(1-x^7)(1-x^8)} \\
-% &= (1+x+x^2+\cdots)(1+x^2+x^4+\cdots)(1+x^3+x^6+\cdots) \\
-% &\quad \times (1+x^4+x^8)(1+x^5)(1+x^6)(1+x^7)(1+x^8)
-% \end{aligned}
-% \]
+8의 경우:
+\[
+\begin{aligned}
+G(x) &= \frac{1}{(1-x)(1-x^2)(1-x^3)(1-x^4)(1-x^5)(1-x^6)(1-x^7)(1-x^8)} \\
+&= (1+x+x^2+\cdots)(1+x^2+x^4+\cdots)(1+x^3+x^6+\cdots) \\
+&\quad \times (1+x^4+x^8)(1+x^5)(1+x^6)(1+x^7)(1+x^8)
+\end{aligned}
+\]
 
-% \(x^8\)의 계수를 구하면 8의 전체 분할 개수 \(p(8) = 22\).
+\(x^8\)의 계수를 구하면 8의 전체 분할 개수 \(p(8) = 22\).
 
-% 이 중 \((8)\) (8 하나만 사용)을 제외: \(22 - 1 = 21\)
+이 중 \((8)\) (8 하나만 사용)을 제외: \(22 - 1 = 21\)
 
-% \vspace{1em}
+\vspace{1em}
 
-% \textbf{방법 4: 직접 나열}
+\textbf{방법 4: 직접 나열}
 
-% \begin{enumerate}
-% \item \(7+1\)
-% \item \(6+2\)
-% \item \(6+1+1\)
-% \item \(5+3\)
-% \item \(5+2+1\)
-% \item \(5+1+1+1\)
-% \item \(4+4\)
-% \item \(4+3+1\)
-% \item \(4+2+2\)
-% \item \(4+2+1+1\)
-% \item \(4+1+1+1+1\)
-% \item \(3+3+2\)
-% \item \(3+3+1+1\)
-% \item \(3+2+2+1\)
-% \item \(3+2+1+1+1\)
-% \item \(3+1+1+1+1+1\)
-% \item \(2+2+2+2\)
-% \item \(2+2+2+1+1\)
-% \item \(2+2+1+1+1+1\)
-% \item \(2+1+1+1+1+1+1\)
-% \item \(1+1+1+1+1+1+1+1\)
-% \end{enumerate}
+\begin{enumerate}
+\item \(7+1\)
+\item \(6+2\)
+\item \(6+1+1\)
+\item \(5+3\)
+\item \(5+2+1\)
+\item \(5+1+1+1\)
+\item \(4+4\)
+\item \(4+3+1\)
+\item \(4+2+2\)
+\item \(4+2+1+1\)
+\item \(4+1+1+1+1\)
+\item \(3+3+2\)
+\item \(3+3+1+1\)
+\item \(3+2+2+1\)
+\item \(3+2+1+1+1\)
+\item \(3+1+1+1+1+1\)
+\item \(2+2+2+2\)
+\item \(2+2+2+1+1\)
+\item \(2+2+1+1+1+1\)
+\item \(2+1+1+1+1+1+1\)
+\item \(1+1+1+1+1+1+1+1\)
+\end{enumerate}
 
-% \textbf{총 21가지}
+\textbf{총 21가지}
 
-% \end{solution}
+\end{solution}
 
-% \begin{answer}
-% \hfill \boxed{21}
-% \end{answer}
+\begin{answer}
+\hfill \boxed{21}
+\end{answer}
 
-% \newpage
+\newpage
 
-% \begin{problem}
-% \(1, 2, 3, \cdots, n\)의 순열인 \(a_1, a_2, \cdots, a_n\) 중 \(a_i \geq n - i - 1\) (\(i = 1, 2, 3, \cdots, n\))을 만족하는 것의 개수를 \(a_n\)이라 할 때, \(a_7\)의 값을 구하여라.
-% \begin{flushright}(20점)\end{flushright}
-% \end{problem}
+\begin{problem}
+\(1, 2, 3, \cdots, n\)의 순열인 \(a_1, a_2, \cdots, a_n\) 중 \(a_i \geq n - i - 1\) (\(i = 1, 2, 3, \cdots, n\))을 만족하는 것의 개수를 \(a_n\)이라 할 때, \(a_7\)의 값을 구하여라.
+\begin{flushright}(20점)\end{flushright}
+\end{problem}
 
-% \begin{solution}
-% \setlength{\parindent}{0pt}
+\begin{solution}
+\setlength{\parindent}{0pt}
 
-% \textbf{문제 이해:}
+\textbf{문제 이해:}
 
-% \(1, 2, 3, \cdots, n\)을 한 줄로 나열하는 순열 \((a_1, a_2, \cdots, a_n)\) 중에서,
-% 모든 \(i = 1, 2, \cdots, n\)에 대해 \(a_i \geq n - i - 1\)을 만족하는 순열의 개수를 구한다.
+\(1, 2, 3, \cdots, n\)을 한 줄로 나열하는 순열 \((a_1, a_2, \cdots, a_n)\) 중에서,
+모든 \(i = 1, 2, \cdots, n\)에 대해 \(a_i \geq n - i - 1\)을 만족하는 순열의 개수를 구한다.
 
-% \(n = 7\)일 때 조건:
-% \[
-% \begin{aligned}
-% a_1 &\geq 7 - 1 - 1 = 5 \\
-% a_2 &\geq 7 - 2 - 1 = 4 \\
-% a_3 &\geq 7 - 3 - 1 = 3 \\
-% a_4 &\geq 7 - 4 - 1 = 2 \\
-% a_5 &\geq 7 - 5 - 1 = 1 \\
-% a_6 &\geq 7 - 6 - 1 = 0 \text{ (항상 참)} \\
-% a_7 &\geq 7 - 7 - 1 = -1 \text{ (항상 참)}
-% \end{aligned}
-% \]
+\(n = 7\)일 때 조건:
+\[
+\begin{aligned}
+a_1 &\geq 7 - 1 - 1 = 5 \\
+a_2 &\geq 7 - 2 - 1 = 4 \\
+a_3 &\geq 7 - 3 - 1 = 3 \\
+a_4 &\geq 7 - 4 - 1 = 2 \\
+a_5 &\geq 7 - 5 - 1 = 1 \\
+a_6 &\geq 7 - 6 - 1 = 0 \text{ (항상 참)} \\
+a_7 &\geq 7 - 7 - 1 = -1 \text{ (항상 참)}
+\end{aligned}
+\]
 
-% \textbf{작은 n부터 계산:}
+\textbf{작은 n부터 계산:}
 
-% \textbf{n = 1:} 조건 \(a_1 \geq -1\) (항상 참) \(\Rightarrow\) \(f(1) = 1\)
+\textbf{n = 1:} 조건 \(a_1 \geq -1\) (항상 참) \(\Rightarrow\) \(f(1) = 1\)
 
-% \textbf{n = 2:} 조건 \(a_1 \geq 0, a_2 \geq -1\) (모두 항상 참) \(\Rightarrow\) \(f(2) = 2! = 2\)
+\textbf{n = 2:} 조건 \(a_1 \geq 0, a_2 \geq -1\) (모두 항상 참) \(\Rightarrow\) \(f(2) = 2! = 2\)
 
-% \textbf{n = 3:} 조건 \(a_1 \geq 1, a_2 \geq 0, a_3 \geq -1\)
+\textbf{n = 3:} 조건 \(a_1 \geq 1, a_2 \geq 0, a_3 \geq -1\)
 
-% \(a_1 \geq 1\)이므로 \(a_1 \in \{1, 2, 3\}\) 모두 가능하고, 나머지 조건도 항상 참이므로
-% 모든 순열이 조건을 만족한다. \(\Rightarrow\) \(f(3) = 3! = 6\)
+\(a_1 \geq 1\)이므로 \(a_1 \in \{1, 2, 3\}\) 모두 가능하고, 나머지 조건도 항상 참이므로
+모든 순열이 조건을 만족한다. \(\Rightarrow\) \(f(3) = 3! = 6\)
 
-% \textbf{점화식 유도:}
+\textbf{점화식 유도:}
 
-% \(n \geq 3\)일 때, 첫 번째 위치에 올 수 있는 수를 분석한다.
+\(n \geq 3\)일 때, 첫 번째 위치에 올 수 있는 수를 분석한다.
 
-% 조건: \(a_1 \geq n - 1 - 1 = n - 2\)
+조건: \(a_1 \geq n - 1 - 1 = n - 2\)
 
-% 따라서 \(a_1 \in \{n-2, n-1, n\}\) (3가지)
+따라서 \(a_1 \in \{n-2, n-1, n\}\) (3가지)
 
-% \textbf{경우 1: \(a_1 = n\)}
+\textbf{경우 1: \(a_1 = n\)}
 
-% 나머지 \(a_2, \cdots, a_n\)에 \(\{1, 2, \cdots, n-1\}\)을 배치한다.
+나머지 \(a_2, \cdots, a_n\)에 \(\{1, 2, \cdots, n-1\}\)을 배치한다.
 
-% 조건: \(a_i \geq n - i - 1\) (\(i = 2, 3, \cdots, n\))
+조건: \(a_i \geq n - i - 1\) (\(i = 2, 3, \cdots, n\))
 
-% \((b_1, b_2, \cdots, b_{n-1}) = (a_2, a_3, \cdots, a_n)\)로 놓으면,
-% \[
-% b_j = a_{j+1} \geq n - (j+1) - 1 = n - j - 2 = (n-1) - j - 1
-% \]
+\((b_1, b_2, \cdots, b_{n-1}) = (a_2, a_3, \cdots, a_n)\)로 놓으면,
+\[
+b_j = a_{j+1} \geq n - (j+1) - 1 = n - j - 2 = (n-1) - j - 1
+\]
 
-% 즉, \(\{1, 2, \cdots, n-1\}\)의 순열 중 \(b_j \geq (n-1) - j - 1\)을 만족하는 것과 같다.
+즉, \(\{1, 2, \cdots, n-1\}\)의 순열 중 \(b_j \geq (n-1) - j - 1\)을 만족하는 것과 같다.
 
-% 이는 정확히 \(f(n-1)\)이다.
+이는 정확히 \(f(n-1)\)이다.
 
-% \textbf{경우 2: \(a_1 = n-1\)}
+\textbf{경우 2: \(a_1 = n-1\)}
 
-% 나머지 \(\{1, 2, \cdots, n-2, n\}\)을 배치한다.
+나머지 \(\{1, 2, \cdots, n-2, n\}\)을 배치한다.
 
-% 조건: \(a_2 \geq n - 2 - 1 = n - 3\)
+조건: \(a_2 \geq n - 2 - 1 = n - 3\)
 
-% \(n\)을 제외하면 \(\{1, 2, \cdots, n-2\}\)에서 가장 큰 수는 \(n-2\)이고, \(n-2 \geq n-3\)이므로
-% \(a_2\)로 사용 가능한 수가 충분하다.
+\(n\)을 제외하면 \(\{1, 2, \cdots, n-2\}\)에서 가장 큰 수는 \(n-2\)이고, \(n-2 \geq n-3\)이므로
+\(a_2\)로 사용 가능한 수가 충분하다.
 
-% 실제로, \(\{1, 2, \cdots, n-2, n\}\)을 각각 \(\{1, 2, \cdots, n-1\}\)로 치환
-% (\(n \to n-1\))하면, 조건이 \(f(n-1)\)과 동일한 구조가 된다.
+실제로, \(\{1, 2, \cdots, n-2, n\}\)을 각각 \(\{1, 2, \cdots, n-1\}\)로 치환
+(\(n \to n-1\))하면, 조건이 \(f(n-1)\)과 동일한 구조가 된다.
 
-% 따라서 이 경우도 \(f(n-1)\)개.
+따라서 이 경우도 \(f(n-1)\)개.
 
-% \textbf{경우 3: \(a_1 = n-2\)}
+\textbf{경우 3: \(a_1 = n-2\)}
 
-% 나머지 \(\{1, 2, \cdots, n-3, n-1, n\}\)을 배치한다.
+나머지 \(\{1, 2, \cdots, n-3, n-1, n\}\)을 배치한다.
 
-% 마찬가지로 조건 분석과 치환을 통해, 이 경우도 \(f(n-1)\)개임을 보일 수 있다.
+마찬가지로 조건 분석과 치환을 통해, 이 경우도 \(f(n-1)\)개임을 보일 수 있다.
 
-% \textbf{점화식:}
-% \[
-% f(n) = f(n-1) + f(n-1) + f(n-1) = 3 \cdot f(n-1) \quad (n \geq 3)
-% \]
+\textbf{점화식:}
+\[
+f(n) = f(n-1) + f(n-1) + f(n-1) = 3 \cdot f(n-1) \quad (n \geq 3)
+\]
 
-% \textbf{일반항 유도:}
+\textbf{일반항 유도:}
 
-% 초기조건: \(f(3) = 6 = 3!\)
+초기조건: \(f(3) = 6 = 3!\)
 
-% 점화식: \(f(n) = 3 \cdot f(n-1)\) (\(n \geq 3\))
+점화식: \(f(n) = 3 \cdot f(n-1)\) (\(n \geq 3\))
 
-% 이를 풀면:
-% \[
-% \begin{aligned}
-% f(n) &= 3 \cdot f(n-1) \\
-% &= 3 \cdot 3 \cdot f(n-2) = 3^2 \cdot f(n-2) \\
-% &= 3^3 \cdot f(n-3) \\
-% &\vdots \\
-% &= 3^{n-3} \cdot f(3) = 3^{n-3} \cdot 3! = 3^{n-3} \cdot 6
-% \end{aligned}
-% \]
+이를 풀면:
+\[
+\begin{aligned}
+f(n) &= 3 \cdot f(n-1) \\
+&= 3 \cdot 3 \cdot f(n-2) = 3^2 \cdot f(n-2) \\
+&= 3^3 \cdot f(n-3) \\
+&\vdots \\
+&= 3^{n-3} \cdot f(3) = 3^{n-3} \cdot 3! = 3^{n-3} \cdot 6
+\end{aligned}
+\]
 
-% 정리하면:
-% \[
-% f(n) = 3^{n-3} \cdot 3! = 6 \cdot 3^{n-3} = 2 \cdot 3^{n-2} \quad (n \geq 3)
-% \]
+정리하면:
+\[
+f(n) = 3^{n-3} \cdot 3! = 6 \cdot 3^{n-3} = 2 \cdot 3^{n-2} \quad (n \geq 3)
+\]
 
-% \textbf{답:}
-% \[
-% f(7) = 3^{7-3} \cdot 3! = 3^4 \cdot 6 = 81 \cdot 6 = 486
-% \]
+\textbf{답:}
+\[
+f(7) = 3^{7-3} \cdot 3! = 3^4 \cdot 6 = 81 \cdot 6 = 486
+\]
 
-% \end{solution}
+\end{solution}
 
-% \begin{answer}
-% \hfill \boxed{486}
-% \end{answer}
+\begin{answer}
+\hfill \boxed{486}
+\end{answer}
 
 \vspace{1cm}
 \begin{center}
-  \textit{Practice makes perfect!}
+    \textit{Practice makes perfect!}
 \end{center}
 
 \end{document}

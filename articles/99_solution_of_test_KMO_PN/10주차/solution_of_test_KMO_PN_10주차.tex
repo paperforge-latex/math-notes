@@ -1,0 +1,629 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{kotex}            % 한글 지원
+\usepackage{amsmath,amssymb}  % 수학 기호 및 수식 패키지
+\usepackage{amsthm}           % 정리, 증명 환경
+\usepackage{graphicx}         % 이미지 삽입
+\usepackage{geometry}         % 페이지 여백 설정
+\usepackage{hyperref}         % 하이퍼링크
+\usepackage{color}            % 색상 지원
+\usepackage{etoolbox}         % 환경 후킹을 위한 패키지
+\usepackage{tikz}
+\usetikzlibrary{fit,calc}
+
+% 페이지 여백 설정
+\geometry{margin=2.5cm}
+
+% 정리, 정의, 예제 환경 설정
+% \theoremstyle{definition}
+
+\newtheoremstyle{test_form}% name
+  {10pt}% Space above
+  {10pt}% Space below
+  {\normalfont\setlength{\parindent}{20pt}} % Body font(+ 본문 들여쓰기)
+  {0em}% Indent amount
+  {\bfseries}% Theorem head font
+  {}% Punctuation after theorem head
+  {\newline}% Space after theorem head (line break!)
+  {}% Theorem head spec
+\theoremstyle{test_form}
+\newtheorem{problem}{문제}[section]
+\newtheorem*{solution}{풀이}
+\newtheorem*{answer}{정답}
+
+% 섹션마다 문제 번호 리셋
+\makeatletter
+\@addtoreset{problem}{section}
+\makeatother
+
+% 문제 번호를 섹션 번호 없이 표시
+\renewcommand{\theproblem}{\arabic{problem}}
+
+% --- 자동 목차 등록 ---
+\newcommand{\tocaddsolution}{%
+  \phantomsection
+  \addcontentsline{toc}{subsubsection}{풀이}%
+}
+\newcommand{\tocaddanswer}{%
+  \phantomsection
+  \addcontentsline{toc}{subsubsection}{정답}%
+}
+
+% problem 환경의 헤더 부분에 목차 추가
+\makeatletter
+\let\old@problem\problem
+\renewcommand{\problem}{%
+  \old@problem
+  \phantomsection
+  \addcontentsline{toc}{subsection}{문제 \theproblem}%
+}
+\makeatother
+
+\AtBeginEnvironment{solution}{\tocaddsolution}
+\AtBeginEnvironment{answer}{\tocaddanswer}
+
+\title{KMO 대비반 중급 10주차 테스트}
+\author{Taeyang Lee}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents  % 목차 자동 생성
+
+\newpage
+
+% =====================================
+\section{대수}
+
+\begin{problem}
+  양수 \(a,b\)에 대하여 식
+  \[
+  a^2+b+\frac{9}{a+b+1}
+  \]
+  의 최소값을 기약분수 \(\dfrac{n}{m}\)으로 나타내었을 때, \(10m+n\)의 값을 구하여라.
+  \begin{flushright}(20점)\end{flushright}
+  \end{problem}
+  
+  \begin{solution}
+  \setlength{\parindent}{0pt}
+  
+  \textbf{Step 1. 변수 합으로 정리}
+  
+  \(s=a+b+1\)이라 두면 \(b=s-a-1\)이고 \(s>a+1\)이다. 식은
+  \[
+  a^2+(s-a-1)+\frac{9}{s}
+  = \left(a^2-a\right)+s-1+\frac{9}{s}.
+  \]
+  
+  \textbf{Step 2. \(s\)를 고정했을 때 \(a\)에 대한 최소}
+  
+  \[
+  a^2-a=\left(a-\frac12\right)^2-\frac14 \ge -\frac14,
+  \]
+  등호는 \(a=\frac12\)에서 성립한다. 이때 \(b=s-\frac12-1=s-\frac32>0\)이려면 \(s>\frac32\)이면 된다.
+  
+  따라서
+  \[
+  a^2+b+\frac{9}{a+b+1}\ge -\frac14+s-1+\frac{9}{s}
+  = s+\frac{9}{s}-\frac54.
+  \]
+  
+  \textbf{Step 3. \(s+\dfrac{9}{s}\)의 최소}
+  
+  \(s>0\)에서 AM--GM로
+  \[
+  s+\frac{9}{s}\ge 2\sqrt{9}=6,
+  \]
+  등호는 \(s=3\)에서 성립한다. 이때 \(a=\frac12\), \(b=\frac32\)로 조건을 만족한다.
+  
+  따라서 최소값은
+  \[
+  6-\frac54=\frac{19}{4}.
+  \]
+  
+  \end{solution}
+  
+  \begin{answer}
+  \hfill 최소값 \(\dfrac{n}{m}=\dfrac{19}{4}\) 이므로 \(10m+n=40+19=\boxed{59}\).
+  \end{answer}
+  
+  \newpage
+  
+  % ==========================
+  \begin{problem}
+  실수 \(a,b,c\)가 임의의 실수 \(x,y,z\)에 대하여
+  \[
+  x^2+4xy+4y^2+axz+byz+cz^2\ge 0
+  \]
+  를 만족시킨다고 하자. 이때 \(3a+2b-c\)의 최댓값을 구하여라.
+  \begin{flushright}(20점)\end{flushright}
+  \end{problem}
+  
+  \begin{solution}
+  \setlength{\parindent}{0pt}
+  
+  \textbf{Step 1. 제곱완성과 변수 치환}
+  
+  \[
+  x^2+4xy+4y^2=(x+2y)^2.
+  \]
+  \(u=x+2y\)로 두고 \(x=u-2y\)를 대입하면
+  \[
+  Q=u^2+a(u-2y)z+byz+cz^2
+  =u^2+auz+(b-2a)yz+cz^2.
+  \]
+  
+  \textbf{Step 2. \(y\)가 선형으로만 등장하는 조건}
+  
+  \(Q\ge 0\)가 모든 \(u,y,z\)에 대해 성립하려면,
+  \((b-2a)yz\) 항이 남아 있으면 \(z\neq 0\) 고정 후 \(y\to\pm\infty\)로 발산시켜 \(Q\)를 음으로 만들 수 있다.
+  따라서
+  \[
+  b-2a=0 \quad\Rightarrow\quad b=2a.
+  \]
+  
+  \textbf{Step 3. 2변수 이차형식의 반정부호 조건}
+  
+  이제
+  \[
+  Q=u^2+auz+cz^2
+  \]
+  가 모든 \(u,z\)에 대해 \(\ge 0\)이어야 한다. 이는 판별식 조건과 동치:
+  \[
+  a^2-4c\le 0 \quad\Rightarrow\quad c\ge \frac{a^2}{4}.
+  \]
+  
+  \textbf{Step 4. 목적함수 최대화}
+  
+  \[
+  3a+2b-c=3a+4a-c=7a-c \le 7a-\frac{a^2}{4}.
+  \]
+  우변은 아래로 볼록인 이차식이며,
+  \[
+  \frac{d}{da}\left(7a-\frac{a^2}{4}\right)=7-\frac{a}{2}=0
+  \Rightarrow a=14.
+  \]
+  이때 최대값은
+  \[
+  7\cdot 14-\frac{14^2}{4}=98-49=49.
+  \]
+  등호는 \((a,b,c)=(14,28,49)\)에서 성립한다.
+  
+  \end{solution}
+  
+  \begin{answer}
+  \hfill \(\boxed{49}\)
+  \end{answer}
+  
+  \newpage
+  
+  % ==========================
+  \begin{problem}
+  다음 연립방정식을 만족하는 복소수 \(x,y\)에 대하여 \(x+y\)의 값으로 가능한 것들의 제곱의 합을 구하여라.
+  \[
+  x^2+y^2=7,\qquad x^3+y^3=10.
+  \]
+  \begin{flushright}(20점)\end{flushright}
+  \end{problem}
+  
+  \begin{solution}
+  \setlength{\parindent}{0pt}
+  
+  \textbf{Step 1. 대칭식으로 치환}
+  
+  \(s=x+y,\; p=xy\)라 두면
+  \[
+  x^2+y^2=s^2-2p=7 \quad\Rightarrow\quad p=\frac{s^2-7}{2}.
+  \]
+  또한
+  \[
+  x^3+y^3=s^3-3ps=10.
+  \]
+  
+  \textbf{Step 2. \(s\)에 대한 방정식}
+  
+  \(p=\dfrac{s^2-7}{2}\)를 대입하면
+  \[
+  s^3-\frac{3s(s^2-7)}{2}=10.
+  \]
+  양변에 2를 곱해 정리하면
+  \[
+  2s^3-3s^3+21s=20
+  \quad\Rightarrow\quad
+  s^3-21s+20=0.
+  \]
+  인수분해하면
+  \[
+  (s-1)(s^2+s-20)=(s-1)(s-4)(s+5)=0.
+  \]
+  따라서 가능한 \(s\)는 \(1,4,-5\)이다. (각 \(s\)에 대해 \(p=\frac{s^2-7}{2}\)를 택하면
+  \(t^2-st+p=0\)의 근으로 \(x,y\)가 존재하므로 모두 가능)
+  
+  \textbf{Step 3. 제곱의 합}
+  
+  \[
+  1^2+4^2+(-5)^2=1+16+25=42.
+  \]
+  
+  \end{solution}
+  
+  \begin{answer}
+  \hfill \(\boxed{42}\)
+  \end{answer}
+  
+  \newpage
+  
+  % ==========================
+  \begin{problem}
+  다음 부정방정식을 만족하는 자연수 \(x,y,z,k\)에 대하여
+  \(x+y+z+k\)의 값으로 가능한 것들의 합을 구하여라.
+  \[
+  \frac{1}{x}+\frac{1}{y}+\frac{1}{z}=k
+  \]
+  \begin{flushright}(20점)\end{flushright}
+  \end{problem}
+  
+  \begin{solution}
+  \setlength{\parindent}{0pt}
+  
+  \textbf{Step 1. \(k\)의 범위}
+  
+  좌변은 \(\le 1+1+1=3\) 이므로 \(k\in\{1,2,3\}\).
+  
+  \textbf{Step 2. \(k=3\)}
+  
+  \(\frac1x+\frac1y+\frac1z=3\)이려면 \(x=y=z=1\).
+  따라서 \(x+y+z+k=1+1+1+3=6\).
+  
+  \textbf{Step 3. \(k=2\)}
+  
+  WLOG \(x\le y\le z\). 그러면 \(\frac{3}{x}\ge 2\Rightarrow x\le 1\)이므로 \(x=1\).
+  \[
+  1+\frac1y+\frac1z=2 \Rightarrow \frac1y+\frac1z=1.
+  \]
+  또한 \(\frac{2}{y}\ge 1\Rightarrow y\le 2\). \(y=2\)만 가능하며,
+  \[
+  \frac12+\frac1z=1\Rightarrow z=2.
+  \]
+  따라서 가능값은 \(1+2+2+2=7\).
+  
+  \textbf{Step 4. \(k=1\)}
+  
+  WLOG \(x\le y\le z\). \(\frac{3}{x}\ge 1\Rightarrow x\le 3\).
+  
+  \underline{(i) \(x=2\):}
+  \[
+  \frac12+\frac1y+\frac1z=1\Rightarrow \frac1y+\frac1z=\frac12.
+  \]
+  \(y\le z\)이므로 \(\frac{2}{y}\ge \frac12\Rightarrow y\le 4\).
+  \(y=3\)이면 \( \frac13+\frac1z=\frac12\Rightarrow z=6\).
+  \(y=4\)이면 \( \frac14+\frac1z=\frac12\Rightarrow z=4\).
+  따라서 \((2,3,6)\), \((2,4,4)\).
+  
+  \underline{(ii) \(x=3\):}
+  \[
+  \frac13+\frac1y+\frac1z=1\Rightarrow \frac1y+\frac1z=\frac23.
+  \]
+  \(\frac{2}{y}\ge \frac23\Rightarrow y\le 3\)이므로 \(y=3\),
+  \(\frac13+\frac1z=\frac23\Rightarrow z=3\).
+  따라서 \((3,3,3)\).
+  
+  따라서 \(k=1\)에서 \(x+y+z+k\) 가능값은
+  \[
+  2+3+6+1=12,\quad 2+4+4+1=11,\quad 3+3+3+1=10.
+  \]
+  
+  \textbf{Step 5. 가능한 값들의 합}
+  
+  가능한 값은 \(6,7,10,11,12\)이므로 합은
+  \[
+  6+7+10+11+12=46.
+  \]
+  
+  \end{solution}
+  
+  \begin{answer}
+  \hfill \(\boxed{46}\)
+  \end{answer}
+  
+  \newpage
+  
+  % ==========================
+  \begin{problem}
+  양의 실수 \(a,b,c\)를 계수로 하는 다음 3차 방정식의 근이 모두 실수일 때,
+  \(\dfrac{ab}{c}\)의 최솟값을 구하여라. \\
+  (Hint: 근과 계수와의 관계를 이용해보자.)
+  \[
+  x^3-ax^2+bx-c=0
+  \]
+  \begin{flushright}(20점)\end{flushright}
+  \end{problem}
+  
+  \begin{solution}
+  \setlength{\parindent}{0pt}
+  
+  방정식의 실근을 \(r_1,r_2,r_3\)라 하자. 비에타에 의해
+  \[
+  a=r_1+r_2+r_3,\quad
+  b=r_1r_2+r_2r_3+r_3r_1,\quad
+  c=r_1r_2r_3.
+  \]
+  따라서
+  \[
+  \frac{ab}{c}
+  =
+  (r_1+r_2+r_3)\cdot
+  \frac{r_1r_2+r_2r_3+r_3r_1}{r_1r_2r_3}
+  =
+  (r_1+r_2+r_3)\left(\frac1{r_1}+\frac1{r_2}+\frac1{r_3}\right).
+  \]
+  또한 \(c>0\)이고 \(\frac{b}{c}>0\)이므로 \(\frac1{r_1}+\frac1{r_2}+\frac1{r_3}>0\).
+  만약 두 근이 음수라면 \(r_1+r_2<0\)이고 \(\frac1{r_1}+\frac1{r_2}<0\)인데
+  두 합을 동시에 양수로 만들 수 없으므로, 결국 \(r_1,r_2,r_3>0\)이다.
+  (즉 세 근은 모두 양수)
+  
+  이제 Cauchy--Schwarz로
+  \[
+  (r_1+r_2+r_3)\left(\frac1{r_1}+\frac1{r_2}+\frac1{r_3}\right)
+  \ge (1+1+1)^2=9.
+  \]
+  등호는 \(r_1=r_2=r_3\)일 때 성립한다.
+  예를 들어 \(r_1=r_2=r_3=1\)이면 \(a=3,b=3,c=1\)이고 \(\frac{ab}{c}=9\)이다.
+  
+  따라서 최솟값은 \(9\).
+  
+  \end{solution}
+  
+  \begin{answer}
+  \hfill \(\boxed{9}\)
+  \end{answer}
+
+\newpage
+
+\section{조합}
+
+\begin{problem}
+  가로, 세로, 높이가 \(a,b,c\)인 직육면체에 \(1\)부터 \(6\)까지의 숫자를 적을 때,
+  가능한 경우의 수를 \(f(a,b,c)\)라 하자. 단, 돌려서 같으면 한 가지로 센다.
+  이 때,
+  \[
+  f(1,1,1)+f(1,1,2)+f(1,2,3)
+  \]
+  의 값을 구하여라.
+  \begin{flushright}(20점)\end{flushright}
+  \end{problem}
+  
+  \begin{solution}
+  \setlength{\parindent}{0pt}
+  
+  여섯 면에 \(1,2,3,4,5,6\)을 한 번씩 쓰는 모든 표기는 \(6!=720\)가지이다.
+  라벨이 모두 서로 다르므로, 어떤 회전도 라벨을 그대로 유지할 수 없고(항등만 가능),
+  따라서 ``돌려서 같음''에 대한 동치류의 크기는 곧 회전대칭군의 크기 \(|G|\)와 같다.
+  즉,
+  \[
+  f(a,b,c)=\frac{6!}{|G|}.
+  \]
+  
+  \textbf{(1) \(f(1,1,1)\) (정육면체):} 회전대칭군 크기 \(|G|=24\).
+  \[
+  f(1,1,1)=\frac{720}{24}=30.
+  \]
+  
+  \textbf{(2) \(f(1,1,2)\) (정사각기둥):} 위아래가 정사각형이고 높이가 달라서 회전대칭군은
+  정사각형의 대칭 \(D_4\)에 해당하여 \(|G|=8\).
+  \[
+  f(1,1,2)=\frac{720}{8}=90.
+  \]
+  
+  \textbf{(3) \(f(1,2,3)\) (세 변이 모두 다름):} 서로 다른 세 축에 대한 \(180^\circ\) 회전만 가능하여
+  \(|G|=4\) (항등 + 3개의 \(180^\circ\) 회전).
+  \[
+  f(1,2,3)=\frac{720}{4}=180.
+  \]
+  
+  따라서
+  \[
+  f(1,1,1)+f(1,1,2)+f(1,2,3)=30+90+180=300.
+  \]
+  
+  \end{solution}
+  
+  \begin{answer}
+  \hfill \(\boxed{300}\)
+  \end{answer}
+  
+  \newpage
+  
+  % ==========================
+  \begin{problem}
+  \(A\) \(1\)개, \(B\) \(6\)개, \(C\) \(4\)개를 모두 이용하여 만들 수 있는 목걸이의 개수를 구하여라.
+  \begin{flushright}(20점)\end{flushright}
+  \end{problem}
+  
+  \begin{solution}
+  \setlength{\parindent}{0pt}
+  
+  전체 구슬 수는 \(11\)개이다. 목걸이는 뒤집어도 같게 보므로 군은 이면체군 \(D_{11}\)이고 \(|D_{11}|=22\).
+  Burnside를 적용한다.
+  
+  \textbf{(1) 항등 회전(그대로):}
+  \[
+  \mathrm{Fix}(e)=\frac{11!}{1!\,6!\,4!}=2310.
+  \]
+  
+  \textbf{(2) 비자명 회전:}
+  \(11\)은 소수이므로 \(k\neq 0\) 회전은 길이 \(11\)인 한 주기.
+  고정되려면 모든 자리가 같은 문자여야 하나 \(A,B,C\) 개수가 달라 불가능.
+  따라서 \(\mathrm{Fix}(\text{비자명 회전})=0\).
+  
+  \textbf{(3) 반사(뒤집기):}
+  \(11\)은 홀수이므로 각 반사는 고정점 1개와 쌍 5개를 만든다.
+  쌍에서는 같은 문자가 배치되어야 하므로 각 문자 개수 중
+  고정점에 들어가는 문자만 홀수일 수 있다.
+  현재 홀수인 것은 \(A\)만이므로 고정점은 반드시 \(A\).
+  
+  그럼 남은 10자리는 5쌍이며 \(B\) 6개, \(C\) 4개이므로
+  \(B\)는 3쌍, \(C\)는 2쌍을 차지한다.
+  따라서 한 반사에서 고정되는 배치는
+  \[
+  \binom{5}{3}=10
+  \]
+  가지. 반사는 \(11\)개이므로 반사 고정 합은 \(11\cdot 10=110\).
+  
+  \textbf{(4) Burnside 평균}
+  \[
+  \#=\frac{1}{22}\left(2310+110\right)=\frac{2420}{22}=110.
+  \]
+  
+  \end{solution}
+  
+  \begin{answer}
+  \hfill \(\boxed{110}\)
+  \end{answer}
+  
+  \newpage
+  
+  % ==========================
+  \begin{problem}
+  문자 \(A,B,C,D\)를 사용하여 만든 8자리 문자열 중,
+  \(A\)가 나타나면 바로 다음에는 항상 \(B\)가 나타나고,
+  \(B\)가 나타나면 바로 이전에는 항상 \(A\)가 나타나는 것의 개수를 구하여라.
+  (예: \(DABABDAB\), \(DDCCDDCD\))
+  \begin{flushright}(20점)\end{flushright}
+  \end{problem}
+  
+  \begin{solution}
+  \setlength{\parindent}{0pt}
+  
+  조건은 \(A\)와 \(B\)가 항상 연속해서 \(\,AB\,\)라는 블록으로만 등장한다는 뜻이다.
+  즉, 문자열은 길이 2짜리 블록 \(X:=AB\)와 길이 1짜리 문자 \(C,D\)로만 이루어진다.
+  
+  \(X\) 블록의 개수를 \(k\)라 하면 전체 길이 8이므로
+  \[
+  2k + (\text{단일문자 수})=8 \Rightarrow \text{단일문자 수}=8-2k.
+  \]
+  총 ``기호''의 개수는 \(k+(8-2k)=8-k\)개이며, 이 중 \(k\)개의 자리에 \(X\)가 온다.
+  따라서 배치 가짓수는 \(\binom{8-k}{k}\).
+  나머지 \(8-2k\)개의 단일문자는 각각 \(C\) 또는 \(D\)이므로 \(2^{8-2k}\)가지.
+  
+  따라서 전체 개수
+  \[
+  \sum_{k=0}^{4}\binom{8-k}{k}\,2^{8-2k}.
+  \]
+  값을 계산하면
+  \[
+  \begin{aligned}
+  k=0 &: \binom{8}{0}2^8=256\\
+  k=1 &: \binom{7}{1}2^6=7\cdot 64=448\\
+  k=2 &: \binom{6}{2}2^4=15\cdot 16=240\\
+  k=3 &: \binom{5}{3}2^2=10\cdot 4=40\\
+  k=4 &: \binom{4}{4}2^0=1
+  \end{aligned}
+  \]
+  합은 \(256+448+240+40+1=985\).
+  
+  \end{solution}
+  
+  \begin{answer}
+  \hfill \(\boxed{985}\)
+  \end{answer}
+  
+  \newpage
+  
+  % ==========================
+  \begin{problem}
+  수직선 상의 6개의 점 \((0),(1),(2),(3),(4),(5)\)가 있다.
+  \((0)\)에 있는 비둘기는 걸어가거나 날아서 \((5)\)에 도달하려고 한다.
+  걸어가는 경우는 정수직선을 따라 한 칸씩 이동하고,
+  날아가는 경우는 어떤 점에서 날기 시작하여 다른 어떤 점에서 착지한다.
+  이때 비둘기가 이동할 수 있는 모든 경우의 수를 구하여라.
+  (예: \(0\to 2\to 3\to 4\to 5\)도 가능)
+  \begin{flushright}(20점)\end{flushright}
+  \end{problem}
+  
+  \begin{solution}
+  \setlength{\parindent}{0pt}
+  
+  이동 과정은 방문하는 점들의 증가수열
+  \[
+  0=v_0<v_1<\cdots<v_t=5
+  \]
+  로 완전히 결정된다.
+  
+  왜냐하면 연속한 두 점의 차가
+  \(\,v_{i+1}-v_i=1\)이면 걸어서 갈 수 있고,
+  \(\,v_{i+1}-v_i\ge 2\)이면 날아서 갈 수 있기 때문이다.
+  따라서 중간점 \(\{1,2,3,4\}\) 중 어떤 점들을 경유할지의 선택과 일대일 대응한다.
+  
+  즉, \(\{1,2,3,4\}\)의 부분집합을 택하는 경우의 수와 같아
+  \[
+  2^4=16.
+  \]
+  
+  \end{solution}
+  
+  \begin{answer}
+  \hfill \(\boxed{16}\)
+  \end{answer}
+  
+  \newpage
+  
+  % ==========================
+  \begin{problem}
+  빨간 구슬 4개, 노란 구슬 4개, 파란 구슬 4개를 원형으로 배열하는 방법의 수를 \(1000\)으로 나눈 나머지를 구하여라.
+  \begin{flushright}(20점)\end{flushright}
+  \end{problem}
+  
+  \begin{solution}
+    \setlength{\parindent}{0pt}
+    
+    이 문제는 원형 배열에서 회전뿐만 아니라 뒤집기까지 같은 것으로 보는 
+    목걸이(Necklace/Bracelet) 문제이다. 
+    전체 구슬 수 \(n=12\)이며, 이면체군 \(D_{12}\)를 사용하여 Burnside's Lemma로 고정되는 배치를 구한다. \(|D_{12}|=24\)이다.
+  
+    \textbf{Step 1. 회전(Rotation)에 의한 고정점}
+    
+    회전각 \(k\)에 대해 고정되는 배치가 존재하려면, 각 색깔 구슬의 개수 \((4, 4, 4)\)가 주기의 개수 \(\frac{12}{\text{gcd}(k, 12)}\)의 배수여야 한다.
+  
+    \begin{itemize}
+        \item \textbf{항등 회전 (\(k=0\)):} 모든 선형 배열이 고정된다.
+        \[ \mathrm{Fix}(0) = \frac{12!}{4!4!4!} = 34650 \]
+        \item \textbf{\(180^\circ\) 회전 (\(k=6\)):} \(\text{gcd}(6, 12)=6\)이므로 길이가 2인 주기가 6개 생긴다. 각 색깔이 4개씩이므로, 각 색깔은 2개의 주기를 차지해야 한다.
+        \[ \mathrm{Fix}(6) = \frac{6!}{2!2!2!} = 90 \]
+        \item \textbf{\(90^\circ, 270^\circ\) 회전 (\(k=3, 9\)):} \(\text{gcd}(3, 12)=3\)이므로 길이가 4인 주기가 3개 생긴다. 각 색깔이 4개씩이므로, 각 주기는 한 종류의 색으로만 채워진다. (R, Y, B의 순열)
+        \[ \mathrm{Fix}(3) = \mathrm{Fix}(9) = 3! = 6 \]
+        \item \textbf{그 외 회전:} 조건을 만족하는 정수 주기가 형성되지 않아 고정되는 배치가 없다 (\(0\)).
+    \end{itemize}
+    회전군에 의한 합: \(34650 + 90 + 6 + 6 = 34752\).
+  
+    \textbf{Step 2. 반사(Reflection)에 의한 고정점}
+    
+    \(n=12\)가 짝수이므로 반사축은 두 종류이다.
+  
+    \begin{itemize}
+        \item \textbf{선분을 지나는 축 (6개):} 고정점이 없으며, 6쌍의 대칭쌍이 형성된다. 각 색깔은 2쌍씩 배치되어야 한다.
+        \[ 6 \times \frac{6!}{2!2!2!} = 6 \times 90 = 540 \]
+        \item \textbf{두 점을 지나는 축 (6개):} 고정점 2개와 5쌍의 대칭쌍이 형성된다. 각 색깔의 개수가 모두 짝수이므로, 고정점 2개는 같은 색이어야 한다.
+        고정점의 색을 정하는 경우 3가지, 남은 10개(5쌍)를 배치하는 방법 \(\frac{5!}{1!2!2!}=30\)가지.
+        \[ 6 \times (3 \times 30) = 540 \]
+    \end{itemize}
+    반사에 의한 합: \(540 + 540 = 1080\).
+  
+    \textbf{Step 3. 최종 계산}
+    
+    Burnside's Lemma에 의해 전체 경우의 수 \(N\)은 다음과 같다.
+    \[ N = \frac{1}{24}(34752 + 1080) = \frac{35832}{24} = 1493 \]
+    따라서 \(1493\)을 \(1000\)으로 나눈 나머지는 \(493\)이다.
+  
+    \end{solution}
+    
+    \begin{answer}
+    \hfill \(\boxed{493}\)
+    \end{answer}
+
+\vspace{1cm}
+\begin{center}
+    \textit{Practice makes perfect!}
+\end{center}
+
+\end{document}
